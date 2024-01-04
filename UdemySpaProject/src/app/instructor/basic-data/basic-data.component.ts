@@ -1,3 +1,4 @@
+import { CourseCategoryService } from './../../Services/course-category.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,21 +8,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./basic-data.component.css'],
 })
 export class BasicDataComponent implements OnInit {
+  constructor(private CourseCategoryService: CourseCategoryService) {}
+
   ngOnInit(): void {
     this.CreateCourseIntro();
+    this.GetCategories();
+  }
+
+  GetCategories() {
+    this.CourseCategoryService.GetCategories().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.Categoeies = res.data;
+      },
+    });
   }
   selectedTabIndex: number = 0;
 
-  Categoeies = [
-    {
-      Id: 1,
-      Name: 'Development',
-    },
-    {
-      Id: 2,
-      Name: 'Programing',
-    },
-  ];
+  Categoeies = [];
   CourseIntro: FormGroup;
 
   CreateCourseIntro() {

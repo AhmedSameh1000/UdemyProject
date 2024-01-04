@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using UdemyProject.Application;
+using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Domain.Entities;
 using UdemyProject.Infrastructure;
 using UdemyProject.Infrastructure.Helpers;
@@ -24,8 +25,11 @@ using (var Scope = app.Services.CreateScope())
 {
     var UserManger = Scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var RoleManger = Scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var CategoryRepository = Scope.ServiceProvider.GetRequiredService<ICourseCategoryRepository>();
 
-    await new SeedinitialData(RoleManger, UserManger).SeedData();
+    await new SeedAdminWithRolesinitialData(RoleManger, UserManger).SeedData();
+
+    await new SeedCategoriesInitialData(CategoryRepository).SeedCategories();
 }
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

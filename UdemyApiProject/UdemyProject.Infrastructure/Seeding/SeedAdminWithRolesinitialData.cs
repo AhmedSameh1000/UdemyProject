@@ -3,12 +3,12 @@ using UdemyProject.Domain.Entities;
 
 namespace UdemyProject.Infrastructure.Seeding
 {
-    public class SeedinitialData
+    public class SeedAdminWithRolesinitialData
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public SeedinitialData(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public SeedAdminWithRolesinitialData(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;

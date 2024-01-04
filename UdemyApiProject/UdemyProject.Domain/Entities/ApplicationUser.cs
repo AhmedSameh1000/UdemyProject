@@ -6,5 +6,9 @@ namespace UdemyProject.Domain.Entities
     {
         public string Name { get; set; }
         public List<UserRefreshToken>? RefreshTokens { get; set; }
+
+        public List<Course> courses { get; set; }
+
+        public List<Course> CoursesICreated { get; set; }
     }
 }

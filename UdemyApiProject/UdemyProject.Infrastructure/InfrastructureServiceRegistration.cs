@@ -20,6 +20,12 @@ namespace UdemyProject.Infrastructure
         public static IServiceCollection AddInfrastructureRegistration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ICourseCategoryRepository, CourseCategoryRepository>();
+            services.AddScoped<ICourseRequimentRepository, CourseRequimentRepository>();
+            services.AddScoped<IStudentCourseRepository, StudentCourseRepository>();
+            services.AddScoped<IWhatYouLearnFromCourseRepository, WhatYouLearnFromCourseRepository>();
+            services.AddScoped<IWhoIsThisCourseForRepository, WhoIsThisCourseForRepository>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

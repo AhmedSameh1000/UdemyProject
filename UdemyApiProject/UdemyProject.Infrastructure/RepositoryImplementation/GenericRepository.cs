@@ -21,6 +21,11 @@ namespace SimpleEcommerce.Infrastructure.RepositoryImplementation
             await _dbContext.Set<T>().AddAsync(entity);
         }
 
+        public async Task AddRange(List<T> entities)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+        }
+
         public async Task<IEnumerable<T>> GetAllAsNoTracking(string[] InclueProperties = null)
         {
             IQueryable<T> Query = _dbContext.Set<T>().AsNoTracking().AsQueryable();
@@ -92,6 +97,11 @@ namespace SimpleEcommerce.Infrastructure.RepositoryImplementation
         {
             var RowsEfected = await _dbContext.SaveChangesAsync();
             return RowsEfected > 0 ? true : false;
+        }
+
+        public async Task<int> GetCount()
+        {
+            return await _dbContext.Set<T>().CountAsync();
         }
     }
 }

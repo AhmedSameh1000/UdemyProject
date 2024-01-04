@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using System.Globalization;
 using System.Reflection;
 using UdemyProject.Application.ServicesImplementation.AuthServicesImplementation;
+using UdemyProject.Application.ServicesImplementation.CourseCategoriesServicesimplementation;
 using UdemyProject.Contracts.ServicesContracts;
 
 namespace UdemyProject.Application
@@ -72,6 +73,7 @@ namespace UdemyProject.Application
             #endregion Localization
 
             services.AddScoped<IAuthServices, AuthServices>();
+            services.AddScoped<ICourseCategoryService, CourseCategoryService>();
             services.AddMediatR(md => md.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;

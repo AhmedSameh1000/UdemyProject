@@ -16,7 +16,11 @@ namespace UdemyProject.Contract.RepositoryContracts
 
         Task Add(T entity);
 
+        Task AddRange(List<T> entities);
+
         void Update(T entity);
+
+        Task<int> GetCount();
 
         void Remove(T Entity);
 
