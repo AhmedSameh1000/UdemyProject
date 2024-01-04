@@ -13,26 +13,28 @@ export class RegisterComponent {
   ngOnInit(): void {
     this.CreatelogInForm();
   }
-  LoginForm: FormGroup;
+  RegisterForm: FormGroup;
 
   CreatelogInForm() {
-    this.LoginForm = new FormGroup({
+    this.RegisterForm = new FormGroup({
       FullName: new FormControl('', [Validators.required]),
       Email: new FormControl('', [Validators.required, Validators.email]),
       Password: new FormControl('', [Validators.required]),
     });
   }
-  Login() {
-    if (this.LoginForm.invalid) {
+
+  Email_is_already_registered = '';
+  Register() {
+    if (this.RegisterForm.invalid) {
       return;
     }
-    this.AuthService.Signup(this.LoginForm.value).subscribe({
+    this.AuthService.Signup(this.RegisterForm.value).subscribe({
       next: (res: any) => {
-        this.AuthService.SaveTokeninLocalStorage(res);
+        this.AuthService.SaveTokens(res);
         this.Router.navigate(['auth/register']);
       },
       error: (err) => {
-        console.log(err);
+        this.Email_is_already_registered = err.error.errors[0];
       },
     });
   }

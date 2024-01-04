@@ -27,6 +27,12 @@
       Password is required
     </mat-error>
   </mat-form-field>
+  <div
+    class="text-danger text-start ms-2 mb-2"
+    *ngIf="EmailorPasswordIsIncorrect != ''"
+  >
+    {{ EmailorPasswordIsIncorrect }}
+  </div>
 
   <button mat-raised-button color="primary" (click)="Login()">log in</button>
 </form>

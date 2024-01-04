@@ -24,17 +24,18 @@ export class LoginComponent implements OnInit {
       Password: new FormControl(null, [Validators.required]),
     });
   }
+  EmailorPasswordIsIncorrect = '';
   Login() {
     if (this.LoginForm.invalid) {
       return;
     }
     this.AuthService.LogIn(this.LoginForm.value).subscribe({
       next: (res: any) => {
-        this.AuthService.SaveTokeninLocalStorage(res);
-        this.Router.navigate(['auth/register']);
+        this.AuthService.SaveTokens(res);
+        this.Router.navigate(['']);
       },
       error: (err) => {
-        console.log(err);
+        this.EmailorPasswordIsIncorrect = err.error.errors[0];
       },
     });
   }

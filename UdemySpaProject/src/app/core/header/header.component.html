@@ -27,7 +27,11 @@
       </div>
     </div>
     <div class="w-50 d-flex justify-content-end align-items-center">
-      <div class="font me-2 pointer" *ngIf="AuthService.isLoggedIn()">
+      <div
+        class="font me-2 pointer"
+        *ngIf="AuthService.isLoggedIn()"
+        routerLink="instructor/landing"
+      >
         Teach On Udemy
       </div>
       <div class="ms-2 font me-3 pointer" *ngIf="AuthService.isLoggedIn()">
@@ -76,7 +80,7 @@
         <button mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
       </mat-list-item>
 
-      <mat-list-item>
+      <mat-list-item routerLink="">
         <button mat-button><mat-icon>home</mat-icon> Home</button>
       </mat-list-item>
 

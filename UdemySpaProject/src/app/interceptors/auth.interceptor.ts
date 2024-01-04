@@ -32,13 +32,10 @@ export class AuthInterceptor implements HttpInterceptor {
   }
   handleRefrehToken(request: HttpRequest<any>, next: HttpHandler) {
     let authservice = this.inject.get(AuthService);
-    var model = {
-      refreshTokenId: localStorage.getItem('refreshTokenId'),
-    };
-    return authservice.RefreshToken(model).pipe(
-      switchMap((data: any) => {
-        authservice.SaveTokens(data);
-        return next.handle(this.AddTokenheader(request, data.jwtToken));
+    return authservice.RefreshToken(this.authservice.GetUserId()).pipe(
+      switchMap((Response: any) => {
+        authservice.SaveTokens(Response);
+        return next.handle(this.AddTokenheader(request, Response.data.token));
       }),
       catchError((errodata) => {
         return throwError(errodata);

@@ -1,11 +1,11 @@
-<form class="example-form" [formGroup]="LoginForm">
+<form class="example-form" [formGroup]="RegisterForm">
   <mat-form-field class="example-full-width">
     <mat-icon matPrefix>person</mat-icon>
     <input matInput placeholder="FullName...." formControlName="FullName" />
     <mat-error
       *ngIf="
-        LoginForm.get('FullName')?.errors?.['required'] &&
-        LoginForm.get('FullName')?.touched
+        RegisterForm.get('FullName')?.errors?.['required'] &&
+        RegisterForm.get('FullName')?.touched
       "
     >
       *FullName is required
@@ -16,22 +16,24 @@
     <input matInput placeholder="Email...." formControlName="Email" />
     <mat-error
       *ngIf="
-        LoginForm.get('Email')?.errors?.['required'] &&
-        LoginForm.get('Email')?.touched
+        RegisterForm.get('Email')?.errors?.['required'] &&
+        RegisterForm.get('Email')?.touched
       "
     >
       *Email is required
     </mat-error>
     <mat-error
       *ngIf="
-        LoginForm.get('Email')?.errors?.['email'] 
+        RegisterForm.get('Email')?.errors?.['email'] 
        
       "
     >
       *Enter Valid Email
     </mat-error>
   </mat-form-field>
-
+  <div class="text-start ms-2 text-danger mb-2">
+    {{ Email_is_already_registered }}
+  </div>
   <mat-form-field class="example-full-width">
     <mat-icon matPrefix>lock</mat-icon>
     <input
@@ -40,10 +42,10 @@
       placeholder="Password..."
       formControlName="Password"
     />
-    <mat-error *ngIf="LoginForm.get('Password')?.errors?.['required']">
+    <mat-error *ngIf="RegisterForm.get('Password')?.errors?.['required']">
       Password is required
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" (click)="Login()">log in</button>
+  <button mat-raised-button color="primary" (click)="Register()">log in</button>
 </form>

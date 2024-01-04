@@ -20,6 +20,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 let materialmodule = [
   MatInputModule,
@@ -43,6 +45,8 @@ let materialmodule = [
   MatRadioModule,
   MatCheckboxModule,
   MatDialogModule,
+  MatGridListModule,
+  MatTabsModule,
 ];
 @NgModule({
   imports: [materialmodule],
