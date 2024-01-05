@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -5,8 +6,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
-  constructor() {}
+  constructor(private HttpClient: HttpClient) {}
   ComponentRedirection = new Subject<number>();
+  CourseData = new Subject<FormData>();
 
   EmitComponentNumber(ComponentNumber: number) {
     this.ComponentRedirection.next(ComponentNumber);
@@ -14,4 +16,28 @@ export class CourseService {
   GetComponentNumber(): Subject<number> {
     return this.ComponentRedirection;
   }
+  EmitFormData(FormData: FormData) {
+    this.CourseData.next(FormData);
+  }
+  GetGetFormData(): Subject<FormData> {
+    return this.CourseData;
+  }
+
+  CreateBasicCourse(BasicCourse: any) {
+    return this.HttpClient.post(
+      'http://localhost:5227/api/Course/CreateBasicCourse',
+      BasicCourse
+    );
+  }
+
+  CreateCourseRequirments(Requirments: any) {
+    return this.HttpClient.post(
+      'http://localhost:5227/api/Course/CreateBasicCourse',
+      Requirments
+    );
+  }
+}
+export class FormData {
+  isNotValid: any;
+  Data: any;
 }

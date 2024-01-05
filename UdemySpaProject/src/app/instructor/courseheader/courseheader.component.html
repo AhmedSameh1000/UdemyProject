@@ -6,7 +6,13 @@
     content uploaded
   </div>
   <div class="d-flex gap-3 me-2 align-items-center">
-    <button class="btn btn-secondary">Save</button>
+    <button
+      class="btn btn-secondary"
+      [disabled]="IsNotValidToSave"
+      (click)="SaveCourseDetails()"
+    >
+      Save
+    </button>
     <div><i class="fa-solid fa-gear h3 mt-2"></i></div>
   </div>
 </div>

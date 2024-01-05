@@ -14,7 +14,7 @@ const routes: Routes = [
     component: BasicDataComponent,
   },
   {
-    path: 'coursecreation',
+    path: 'coursecreation/:Id',
     component: CoursecreationComponent,
   },
 ];
