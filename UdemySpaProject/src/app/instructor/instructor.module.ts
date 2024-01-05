@@ -8,9 +8,16 @@ import { BasicDataComponent } from './basic-data/basic-data.component';
 import { RouterModule } from '@angular/router';
 import { CoursecreationComponent } from './coursecreation/coursecreation.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CourseplaningComponent } from './courseplaning/courseplaning.component';
+import { CourseheaderComponent } from './courseheader/courseheader.component';
+import { CourserequirmentComponent } from './courserequirment/courserequirment.component';
+import { CurriculmComponent } from './curriculm/curriculm.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { CourseMessageComponent } from './course-message/course-message.component';
 
 @NgModule({
-  declarations: [LandingComponent, BasicDataComponent, CoursecreationComponent],
+  declarations: [LandingComponent, BasicDataComponent, CoursecreationComponent, CourseplaningComponent, CourseheaderComponent, CourserequirmentComponent, CurriculmComponent, LandingpageComponent, PricingComponent, CourseMessageComponent],
   imports: [
     CommonModule,
     InstructorRoutingModule,
