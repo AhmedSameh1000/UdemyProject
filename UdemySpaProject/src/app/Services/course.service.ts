@@ -32,8 +32,14 @@ export class CourseService {
 
   CreateCourseRequirments(Requirments: any) {
     return this.HttpClient.post(
-      'http://localhost:5227/api/Course/CreateBasicCourse',
+      'http://localhost:5227/api/Course/CreateRequirmentCourse',
       Requirments
+    );
+  }
+
+  GetCourseDetails(Id: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/GetCourseDetails?Id=${Id}`
     );
   }
 }

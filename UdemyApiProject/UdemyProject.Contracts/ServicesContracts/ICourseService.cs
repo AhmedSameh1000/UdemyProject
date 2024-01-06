@@ -8,5 +8,6 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<int> CreateBasicCourse(CourseBasicDataDTO courseBasic);
 
         Task CreateRequimentCourse(CoursePrerequisiteDTO prerequisiteDTO);
+        Task<CourseForReturnDto> GetCourse(int Id);
     }
 }

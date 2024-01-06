@@ -23,7 +23,7 @@
     <Folder Include="Features\Authentication\AuthenticationQueries\Validators\" />
     <Folder Include="Features\CourseCategory\CourseCategoryCommands\" />
     <Folder Include="Features\CourseCategory\CourseCategoryQuries\Validators\" />
-    <Folder Include="Features\Course\CourseQueries\" />
+    <Folder Include="Features\Course\CourseQueries\Validators\" />
   </ItemGroup>
 
   <ItemGroup>

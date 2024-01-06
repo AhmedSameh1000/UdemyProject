@@ -1,1 +1,117 @@
-<p>landingpage works!</p>
+<form class="p-3">
+  <h1 class="text-start fw-bold ms-1 mt-3">Course landing page</h1>
+  <hr />
+  <p class="text-start mt-3">
+    Your course landing page is crucial to your success on Udemy. If it’s done
+    right, it can also help you gain visibility in search engines like Google.
+    As you complete this section, think about creating a compelling Course
+    Landing Page that demonstrates why someone would want to enroll in your
+    course. Learn more about creating your course landing page and course title
+    standards.
+  </p>
+
+  <div class="text-start">
+    <p class="fw-bold text-start">Course title</p>
+    <input class="mb-3 w-75 p-2" placeholder="Insert your course title" />
+    <p class="text-start">
+      Your title should be a mix of attention-grabbing, informative, and
+      optimized for search e
+    </p>
+  </div>
+  <div class="text-start">
+    <p class="fw-bold text-start">Course subtitle</p>
+    <input class="mb-3 w-75 p-2" placeholder="Insert your course subtitle" />
+    <p class="text-start">
+      Use 1 or 2 related keywords, and mention 3-4 of the most important areas
+      that you've covered during your course.
+    </p>
+
+    <div class="text-start">
+      <p class="fw-bold text-start">Course description</p>
+      <textarea
+        class="mb-3 w-75 p-2"
+        placeholder="Insert your course description"
+      ></textarea>
+      <p class="text-start">Description should have minimum 200 words.</p>
+    </div>
+
+    <div class="text-start">
+      <p class="fw-bold text-start">Basic info</p>
+
+      <div class="d-flex justify-content-start gap-5">
+        <mat-form-field>
+          <mat-label>Languge</mat-label>
+          <mat-select>
+            <mat-option [value]="food.value" *ngFor="let food of foods">{{
+              food.viewValue
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select>
+            <mat-option [value]="food.value" *ngFor="let food of foods">{{
+              food.viewValue
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="text-start">
+      <div>
+        <p class="fw-bold text-start">Course image</p>
+        <div class="row justify-content-around gap-2">
+          <div
+            style="background-color: #c1d4de; height: 250px"
+            class="col-12 col-lg-5 d-flex justify-content-center align-items-center"
+          >
+            <img
+              style="height: 70%; width: 80%"
+              src="../../../assets/defaultCourseImage/placeholder.jpg"
+              alt=""
+            />
+          </div>
+          <div class="col-12 col-lg-6 d-flex justify-content-start flex-column">
+            <div class="mb-3">
+              Upload your course image here. It must meet our course image
+              quality standards to be accepted. Important guidelines: 750x422
+              pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
+            </div>
+            <div>
+              <input type="file" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-start">
+      <div>
+        <p class="fw-bold text-start mt-2">Promotional video</p>
+        <div class="row justify-content-around gap-2">
+          <div
+            style="background-color: #c1d4de; height: 250px"
+            class="col-12 col-lg-5 d-flex justify-content-center align-items-center"
+          >
+            <img
+              style="height: 70%; width: 80%"
+              src="../../../assets/defaultCourseImage/placeholder.jpg"
+              alt=""
+            />
+          </div>
+          <div class="col-12 col-lg-6 d-flex justify-content-start flex-column">
+            <div class="mb-3">
+              Your promo video is a quick and compelling way for students to
+              preview what they’ll learn in your course. Students considering
+              your course are more likely to enroll if your promo video is
+              well-made. Learn how to make your promo video awesome!
+            </div>
+            <div>
+              <input type="file" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

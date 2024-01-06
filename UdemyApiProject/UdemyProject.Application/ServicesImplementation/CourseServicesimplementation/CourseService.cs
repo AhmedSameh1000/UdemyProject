@@ -36,7 +36,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
 
         public async Task CreateRequimentCourse(CoursePrerequisiteDTO prerequisiteDTO)
         {
-            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == prerequisiteDTO.Id);
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == prerequisiteDTO.Id, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse" });
 
             if (Course is null)
             {
@@ -45,18 +45,49 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
 
             Course.Requirments.AddRange(prerequisiteDTO.Requiments.Select(c => new CourseRequirment
             {
-                Text = c.Text
+                Text = c
             }));
             Course.whoIsthisCoursefors.AddRange(prerequisiteDTO.WhoIsCourseFor.Select(c => new WhoIsthisCoursefor
             {
-                Text = c.Text
+                Text = c
             }));
             Course.whatYouLearnFromCourse.AddRange(prerequisiteDTO.WhateYouLearnFromCourse.Select(c => new WhatYouLearnFromCourse
             {
-                Text = c.Text
+                Text = c
             }));
             _CourseRepository.Update(Course);
             await _CourseRepository.SaveChanges();
+        }
+
+        public async Task<CourseForReturnDto> GetCourse(int Id)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse" });
+            if (Course is null)
+                return null;
+
+            var CourseForReturn = new CourseForReturnDto()
+            {
+                CourseId = Id,
+                Requirments = Course.Requirments.Select(c => new GenralModelCourseDetailsDTo()
+                {
+                    Id = c.Id,
+                    Name = c.Text
+                }).ToList(),
+
+                WhateWillYouLearnFromCourse = Course.whatYouLearnFromCourse.Select(c => new GenralModelCourseDetailsDTo()
+                {
+                    Id = c.Id,
+                    Name = c.Text
+                }).ToList(),
+
+                WhoIsThisCourseFor = Course.whoIsthisCoursefors.Select(c => new GenralModelCourseDetailsDTo()
+                {
+                    Id = c.Id,
+                    Name = c.Text
+                }).ToList(),
+            };
+
+            return CourseForReturn;
         }
     }
 }

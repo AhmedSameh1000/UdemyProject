@@ -10,9 +10,9 @@ namespace UdemyProject.Contracts.DTOs.CourseDTOs
     public class CoursePrerequisiteDTO
     {
         public int Id { get; set; }
-        public List<RequimentDTO> Requiments { get; set; }
-        public List<WhateYouLearnFromCourseDTO> WhateYouLearnFromCourse { get; set; }
+        public List<string> Requiments { get; set; }
+        public List<string> WhateYouLearnFromCourse { get; set; }
 
-        public List<WhoIsCourseForDTO> WhoIsCourseFor { get; set; }
+        public List<string> WhoIsCourseFor { get; set; }
     }
 }
