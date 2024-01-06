@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 export class CourseService {
   constructor(private HttpClient: HttpClient) {}
   ComponentRedirection = new Subject<number>();
-  CourseData = new Subject<FormData>();
+  CourseActionFire = new Subject<number>();
 
   EmitComponentNumber(ComponentNumber: number) {
     this.ComponentRedirection.next(ComponentNumber);
@@ -16,11 +16,12 @@ export class CourseService {
   GetComponentNumber(): Subject<number> {
     return this.ComponentRedirection;
   }
-  EmitFormData(FormData: FormData) {
-    this.CourseData.next(FormData);
+
+  GetCourseFireAction() {
+    return this.CourseActionFire.asObservable();
   }
-  GetGetFormData(): Subject<FormData> {
-    return this.CourseData;
+  FireAction(numberofComponent: number) {
+    return this.CourseActionFire.next(numberofComponent);
   }
 
   CreateBasicCourse(BasicCourse: any) {
@@ -44,6 +45,5 @@ export class CourseService {
   }
 }
 export class FormData {
-  isNotValid: any;
   Data: any;
 }

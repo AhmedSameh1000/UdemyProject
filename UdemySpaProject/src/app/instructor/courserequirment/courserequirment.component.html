@@ -29,6 +29,14 @@
         class="mb-3 w-75 p-2"
         placeholder="What will students learn in your course ?"
       />
+      <button
+        mat-raised-button
+        color="primary"
+        class="mb-1 ms-1"
+        (click)="Remove(i, 'WhateYouLearnFromCourse')"
+      >
+        Delete
+      </button>
     </div>
     <div
       class="d-flex align-items-center gap-1 pointer text-primary mb-3"
@@ -58,6 +66,14 @@
         class="mb-3 w-75 p-2"
         placeholder="Example: No programming experience needed. You will learn everything you need to know"
       />
+      <button
+        mat-raised-button
+        color="primary"
+        class="mb-1 ms-1"
+        (click)="Remove(i, 'Requiments')"
+      >
+        Delete
+      </button>
     </div>
     <div
       class="d-flex align-items-center gap-1 pointer text-primary mb-3"
@@ -85,6 +101,14 @@
         class="mb-3 w-75 p-2"
         placeholder="Example: Beginner Python developers curious about data science"
       />
+      <button
+        mat-raised-button
+        color="primary"
+        class="mb-1 ms-1"
+        (click)="Remove(i, 'WhoIsCourseFor')"
+      >
+        Delete
+      </button>
     </div>
     <div
       class="d-flex align-items-center gap-1 pointer text-primary mb-3"

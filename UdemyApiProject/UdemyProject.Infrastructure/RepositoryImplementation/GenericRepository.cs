@@ -83,6 +83,20 @@ namespace SimpleEcommerce.Infrastructure.RepositoryImplementation
             return await Query.FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAsNoTracking(Expression<Func<T, bool>> filter, string[] InclueProperties = null)
+        {
+            IQueryable<T> Query = _dbContext.Set<T>().AsQueryable();
+            Query = Query.Where(filter);
+            if (InclueProperties != null)
+            {
+                foreach (var includeProperty in InclueProperties)
+                {
+                    Query = Query.Include(includeProperty.Trim());
+                }
+            }
+            return await Query.ToListAsync();
+        }
+
         public void Remove(T Entity)
         {
             _dbContext.Set<T>().Remove(Entity);
@@ -102,6 +116,11 @@ namespace SimpleEcommerce.Infrastructure.RepositoryImplementation
         public async Task<int> GetCount()
         {
             return await _dbContext.Set<T>().CountAsync();
+        }
+
+        public void RemoveRange(IEnumerable<T> Entities)
+        {
+            _dbContext.Set<T>().RemoveRange(Entities);
         }
     }
 }

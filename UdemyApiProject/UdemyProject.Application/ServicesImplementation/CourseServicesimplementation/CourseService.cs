@@ -10,10 +10,17 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _CourseRepository;
+        private readonly ICourseRequimentRepository _CourseRequimentRepository;
+        private readonly IWhatYouLearnFromCourseRepository _WhatYouLearnFromCourseRepository;
+        private readonly IWhoIsThisCourseForRepository _WhoIsThisCourseForRepository;
 
-        public CourseService(ICourseRepository courseRepository)
+        public CourseService(ICourseRepository courseRepository, ICourseRequimentRepository courseRequimentRepository,
+            IWhatYouLearnFromCourseRepository whatYouLearnFromCourseRepository, IWhoIsThisCourseForRepository whoIsThisCourseForRepository)
         {
             _CourseRepository = courseRepository;
+            _CourseRequimentRepository = courseRequimentRepository;
+            _WhatYouLearnFromCourseRepository = whatYouLearnFromCourseRepository;
+            _WhoIsThisCourseForRepository = whoIsThisCourseForRepository;
         }
 
         public async Task<int> CreateBasicCourse(CourseBasicDataDTO courseBasic)
@@ -42,6 +49,16 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 return;
             }
+
+            var Req = await _CourseRequimentRepository.GetAllAsNoTracking(c => c.CourseId == Course.Id);
+            _CourseRequimentRepository.RemoveRange(Req);
+
+            var what = await _WhatYouLearnFromCourseRepository.GetAllAsNoTracking(c => c.CourseId == Course.Id);
+            _WhatYouLearnFromCourseRepository.RemoveRange(what);
+
+            var who = await _WhoIsThisCourseForRepository.GetAllAsNoTracking(c => c.CourseId == Course.Id);
+            _WhoIsThisCourseForRepository.RemoveRange(who);
+            await _WhoIsThisCourseForRepository.SaveChanges();
 
             Course.Requirments.AddRange(prerequisiteDTO.Requiments.Select(c => new CourseRequirment
             {

@@ -14,6 +14,8 @@ namespace UdemyProject.Contract.RepositoryContracts
 
         Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter, string[] InclueProperties = null);
 
+        Task<IEnumerable<T>> GetAllAsNoTracking(Expression<Func<T, bool>> filter, string[] InclueProperties = null);
+
         Task Add(T entity);
 
         Task AddRange(List<T> entities);
@@ -23,6 +25,8 @@ namespace UdemyProject.Contract.RepositoryContracts
         Task<int> GetCount();
 
         void Remove(T Entity);
+
+        void RemoveRange(IEnumerable<T> Entities);
 
         Task<bool> SaveChanges();
     }

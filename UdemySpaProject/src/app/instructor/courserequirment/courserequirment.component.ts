@@ -1,5 +1,5 @@
 import { CourseService, FormData } from './../../Services/course.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,11 +13,20 @@ export class CourserequirmentComponent implements OnInit {
     private CourseService: CourseService,
     private ActivatedRoute: ActivatedRoute
   ) {}
+
   ngOnInit(): void {
     this.CreateCoursePrerequisiteForm();
-    this.OnFormValueChanges();
     this.GetCoursId();
     this.LoadCourses();
+    this.SaveRequirmentWhenFireAction();
+  }
+  NumberOfComponent = 1;
+  SaveRequirmentWhenFireAction() {
+    this.CourseService.GetCourseFireAction().subscribe({
+      next: (res) => {
+        this.SaveCourseDetails();
+      },
+    });
   }
 
   CourseId: any;
@@ -28,10 +37,13 @@ export class CourserequirmentComponent implements OnInit {
       },
     });
   }
+  Remove(Index: number, arrayname: string) {
+    var FormArray = this.PrerequisiteForm.get(arrayname) as FormArray;
+    FormArray.removeAt(Index);
+  }
   LoadCourses() {
     this.CourseService.GetCourseDetails(this.CourseId).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.SetValuesToFormControl(res.data.requirments, 'Requiments');
         this.SetValuesToFormControl(
           res.data.whateWillYouLearnFromCourse,
@@ -46,33 +58,40 @@ export class CourserequirmentComponent implements OnInit {
   }
 
   SetValuesToFormControl(Values: any[], ArrayControls: string) {
+    if (Values.length == 0) {
+      return;
+    }
     var FormArray = this.PrerequisiteForm.get(ArrayControls) as FormArray;
-    var LengthOfArray = FormArray.length - 1;
+    var LengthOfArray = FormArray.value.length - 1;
+
     while (FormArray.length) {
       FormArray.removeAt(LengthOfArray--);
     }
 
     Values.forEach((arr) => {
-      FormArray.insert(
-        arr.id,
-        new FormControl(arr.name, [Validators.required])
-      );
-      console.log(arr);
+      FormArray.push(new FormControl(arr.name, [Validators.required]));
     });
   }
 
-  OnFormValueChanges() {
-    this.PrerequisiteForm.valueChanges.subscribe({
-      next: (Value) => {
-        var formData = new FormData();
-        formData.Data = Value;
-        formData.isNotValid = this.PrerequisiteForm.invalid;
-        if (this.PrerequisiteForm.valid) {
-          this.CourseService.EmitFormData(formData);
-        }
+  SaveCourseDetails() {
+    let prerequisiteDTO = {
+      id: this.CourseId,
+      requiments: this.PrerequisiteForm.get('Requiments').value,
+      whateYouLearnFromCourse: this.PrerequisiteForm.get(
+        'WhateYouLearnFromCourse'
+      ).value,
+      whoIsCourseFor: this.PrerequisiteForm.get('WhoIsCourseFor').value,
+    };
+    this.CourseService.CreateCourseRequirments(prerequisiteDTO).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }
+
   PrerequisiteForm: FormGroup;
 
   CreateCoursePrerequisiteForm() {
