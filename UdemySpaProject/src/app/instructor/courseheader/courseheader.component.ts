@@ -1,7 +1,10 @@
-import { formatDate } from '@angular/common';
 import { CourseService, FormData } from './../../Services/course.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { RequirmentService } from 'src/app/Services/requirment.service';
+import { MessageService } from 'src/app/Services/message.service';
+import { ComponentNumbers } from 'src/app/Models/component-numbers';
+import { GeneralCourse } from 'src/app/Services/general-course';
+import { LandingpageService } from 'src/app/Services/landingpage.service';
 
 @Component({
   selector: 'app-courseheader',
@@ -9,12 +12,43 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./courseheader.component.css'],
 })
 export class CourseheaderComponent implements OnInit {
-  constructor(private CourseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private requirmentService: RequirmentService,
+    private messageService: MessageService,
+    private landingservice: LandingpageService
+  ) {}
+
   CourseId: any;
-  NumberOfComponent: number;
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.courseService.GetFiredData().subscribe({
+      next: (data) => {
+        this.SaveCourse(data.numberObComponent, data);
+      },
+    });
+  }
+
+  SaveCourse(numberOfComponent: number, data: FormData) {
+    // Choose the service based on NumberOfComponent
+    const selectedService: GeneralCourse =
+      this.GetSelectedServices(numberOfComponent);
+
+    // Call the SaveCourse method on the selected service
+    selectedService.SaveCourse(data);
+  }
+  GetSelectedServices(numberOfComponent: number): any {
+    switch (numberOfComponent) {
+      case ComponentNumbers.RequirmentComponentnumber:
+        return this.requirmentService;
+      case ComponentNumbers.messageComponentnumber:
+        return this.messageService;
+      case ComponentNumbers.landingpageComponentnumber:
+        return this.landingservice;
+    }
+  }
 
   FireActionSaveClick() {
-    this.CourseService.FireAction(this.NumberOfComponent);
+    this.courseService.FireAction();
   }
 }

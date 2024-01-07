@@ -2,29 +2,37 @@ import { CourseService, FormData } from './../../Services/course.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ComponentNumbers } from 'src/app/Models/component-numbers';
 
 @Component({
   selector: 'app-courserequirment',
   templateUrl: './courserequirment.component.html',
   styleUrls: ['./courserequirment.component.css'],
 })
-export class CourserequirmentComponent implements OnInit {
+export class CourserequirmentComponent implements OnInit, OnDestroy {
   constructor(
     private CourseService: CourseService,
     private ActivatedRoute: ActivatedRoute
   ) {}
+  ngOnDestroy(): void {
+    this.Obs1.unsubscribe();
+  }
 
+  Obs1: any;
   ngOnInit(): void {
     this.CreateCoursePrerequisiteForm();
     this.GetCoursId();
     this.LoadCourses();
     this.SaveRequirmentWhenFireAction();
   }
-  NumberOfComponent = 1;
   SaveRequirmentWhenFireAction() {
-    this.CourseService.GetCourseFireAction().subscribe({
+    this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({
       next: (res) => {
-        this.SaveCourseDetails();
+        var data = new FormData();
+        data.Data = this.PrerequisiteForm.value;
+        data.CourseId = this.CourseId;
+        data.numberObComponent = ComponentNumbers.RequirmentComponentnumber;
+        this.CourseService.SetFiredData(data);
       },
     });
   }
@@ -70,25 +78,6 @@ export class CourserequirmentComponent implements OnInit {
 
     Values.forEach((arr) => {
       FormArray.push(new FormControl(arr.name, [Validators.required]));
-    });
-  }
-
-  SaveCourseDetails() {
-    let prerequisiteDTO = {
-      id: this.CourseId,
-      requiments: this.PrerequisiteForm.get('Requiments').value,
-      whateYouLearnFromCourse: this.PrerequisiteForm.get(
-        'WhateYouLearnFromCourse'
-      ).value,
-      whoIsCourseFor: this.PrerequisiteForm.get('WhoIsCourseFor').value,
-    };
-    this.CourseService.CreateCourseRequirments(prerequisiteDTO).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (err) => {
-        console.log(err);
-      },
     });
   }
 

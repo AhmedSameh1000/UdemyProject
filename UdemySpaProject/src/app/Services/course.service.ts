@@ -6,13 +6,18 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class CourseService {
-  constructor(private HttpClient: HttpClient) {}
+  constructor(private HttpClient: HttpClient) {
+    this.FiredData = new Subject<FormData>(); // Initialize FiredData here
+  }
+
   ComponentRedirection = new Subject<number>();
-  CourseActionFire = new Subject<number>();
+  CourseActionFire = new Subject<void>();
+  FiredData: Subject<FormData>; // Initialized in the constructor
 
   EmitComponentNumber(ComponentNumber: number) {
     this.ComponentRedirection.next(ComponentNumber);
   }
+
   GetComponentNumber(): Subject<number> {
     return this.ComponentRedirection;
   }
@@ -20,8 +25,9 @@ export class CourseService {
   GetCourseFireAction() {
     return this.CourseActionFire.asObservable();
   }
-  FireAction(numberofComponent: number) {
-    return this.CourseActionFire.next(numberofComponent);
+
+  FireAction() {
+    return this.CourseActionFire.next();
   }
 
   CreateBasicCourse(BasicCourse: any) {
@@ -43,7 +49,19 @@ export class CourseService {
       `http://localhost:5227/api/Course/GetCourseDetails?Id=${Id}`
     );
   }
+
+  SetFiredData(Data: FormData) {
+    this.FiredData.next(Data);
+  }
+
+  GetFiredData() {
+    return this.FiredData.asObservable();
+  }
 }
+
 export class FormData {
   Data: any;
+  CourseId: number;
+  numberObComponent: number;
+  constructor() {}
 }

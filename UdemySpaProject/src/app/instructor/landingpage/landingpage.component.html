@@ -1,4 +1,4 @@
-<form class="p-3">
+<form class="p-3" [formGroup]="landingForm">
   <h1 class="text-start fw-bold ms-1 mt-3">Course landing page</h1>
   <hr />
   <p class="text-start mt-3">
@@ -12,7 +12,11 @@
 
   <div class="text-start">
     <p class="fw-bold text-start">Course title</p>
-    <input class="mb-3 w-75 p-2" placeholder="Insert your course title" />
+    <input
+      formControlName="Title"
+      class="mb-3 w-75 p-2"
+      placeholder="Insert your course title"
+    />
     <p class="text-start">
       Your title should be a mix of attention-grabbing, informative, and
       optimized for search e
@@ -20,7 +24,11 @@
   </div>
   <div class="text-start">
     <p class="fw-bold text-start">Course subtitle</p>
-    <input class="mb-3 w-75 p-2" placeholder="Insert your course subtitle" />
+    <input
+      formControlName="Subtitle"
+      class="mb-3 w-75 p-2"
+      placeholder="Insert your course subtitle"
+    />
     <p class="text-start">
       Use 1 or 2 related keywords, and mention 3-4 of the most important areas
       that you've covered during your course.
@@ -29,6 +37,7 @@
     <div class="text-start">
       <p class="fw-bold text-start">Course description</p>
       <textarea
+        formControlName="Decribtion"
         class="mb-3 w-75 p-2"
         placeholder="Insert your course description"
       ></textarea>
@@ -41,7 +50,7 @@
       <div class="d-flex justify-content-start gap-5">
         <mat-form-field>
           <mat-label>Languge</mat-label>
-          <mat-select>
+          <mat-select formControlName="Languge">
             <mat-option [value]="food.value" *ngFor="let food of foods">{{
               food.viewValue
             }}</mat-option>
@@ -49,7 +58,7 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Category</mat-label>
-          <mat-select>
+          <mat-select formControlName="Category">
             <mat-option [value]="food.value" *ngFor="let food of foods">{{
               food.viewValue
             }}</mat-option>
