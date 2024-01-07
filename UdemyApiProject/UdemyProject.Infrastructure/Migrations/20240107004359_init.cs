@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UdemyProject.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,6 +62,19 @@ namespace UdemyProject.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_courseCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseLanguge",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseLanguge", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,6 +216,7 @@ namespace UdemyProject.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CourseLanguge = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
+                    langugeId = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isPublished = table.Column<bool>(type: "bit", nullable: false),
                     InstructorId = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -216,6 +230,12 @@ namespace UdemyProject.Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Courses_CourseLanguge_langugeId",
+                        column: x => x.langugeId,
+                        principalTable: "CourseLanguge",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Courses_courseCategories_CategoryId",
                         column: x => x.CategoryId,
@@ -365,6 +385,11 @@ namespace UdemyProject.Infrastructure.Migrations
                 column: "InstructorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Courses_langugeId",
+                table: "Courses",
+                column: "langugeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RefreshTokens_UserId",
                 table: "RefreshTokens",
                 column: "UserId");
@@ -431,6 +456,9 @@ namespace UdemyProject.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "CourseLanguge");
 
             migrationBuilder.DropTable(
                 name: "courseCategories");

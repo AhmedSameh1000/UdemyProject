@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
+import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { CourseService, FormData } from 'src/app/Services/course.service';
 
 @Component({
@@ -9,13 +10,36 @@ import { CourseService, FormData } from 'src/app/Services/course.service';
   styleUrls: ['./landingpage.component.css'],
 })
 export class LandingpageComponent implements OnInit, OnDestroy {
-  constructor(private CourseService: CourseService) {}
+  constructor(
+    private CourseService: CourseService,
+    private CourseCategoryService: CourseCategoryService
+  ) {}
   ngOnDestroy(): void {
     this.Obs1.unsubscribe();
   }
   ngOnInit(): void {
     this.CreateLandingForm();
     this.SaveLandingpageData();
+
+    this.GetCategories();
+    this.Getlanguges();
+  }
+
+  Categoris: any;
+  GetCategories() {
+    this.CourseCategoryService.GetCategories().subscribe({
+      next: (res: any) => {
+        this.Categoris = res.data;
+      },
+    });
+  }
+  languges: any;
+  Getlanguges() {
+    this.CourseCategoryService.Getlanguges().subscribe({
+      next: (res: any) => {
+        this.languges = res.data;
+      },
+    });
   }
   Obs1: any;
   SaveLandingpageData() {

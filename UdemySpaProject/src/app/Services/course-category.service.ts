@@ -12,4 +12,9 @@ export class CourseCategoryService {
       'http://localhost:5227/api/CourseCategory/Categories'
     );
   }
+  Getlanguges() {
+    return this.HttpClient.get(
+      'http://localhost:5227/api/CourseCategory/Getlanguges'
+    );
+  }
 }

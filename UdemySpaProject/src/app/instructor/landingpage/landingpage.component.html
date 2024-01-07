@@ -51,17 +51,19 @@
         <mat-form-field>
           <mat-label>Languge</mat-label>
           <mat-select formControlName="Languge">
-            <mat-option [value]="food.value" *ngFor="let food of foods">{{
-              food.viewValue
+            <mat-option [value]="Languge.id" *ngFor="let Languge of languges">{{
+              Languge.name
             }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Category</mat-label>
           <mat-select formControlName="Category">
-            <mat-option [value]="food.value" *ngFor="let food of foods">{{
-              food.viewValue
-            }}</mat-option>
+            <mat-option
+              [value]="Category.id"
+              *ngFor="let Category of Categoris"
+              >{{ Category.name }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
       </div>

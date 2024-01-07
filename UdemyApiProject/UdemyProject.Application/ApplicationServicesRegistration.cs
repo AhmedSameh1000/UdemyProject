@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Reflection;
 using UdemyProject.Application.ServicesImplementation.AuthServicesImplementation;
 using UdemyProject.Application.ServicesImplementation.CourseCategoriesServicesimplementation;
+using UdemyProject.Application.ServicesImplementation.Courselangugeimplementation;
 using UdemyProject.Application.ServicesImplementation.CourseServicesimplementation;
 using UdemyProject.Contracts.ServicesContracts;
 
@@ -74,6 +75,7 @@ namespace UdemyProject.Application
             #endregion Localization
 
             services.AddScoped<IAuthServices, AuthServices>();
+            services.AddScoped<ICourseLangugeService, CourseLangugeService>();
             services.AddScoped<ICourseCategoryService, CourseCategoryService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddMediatR(md => md.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));

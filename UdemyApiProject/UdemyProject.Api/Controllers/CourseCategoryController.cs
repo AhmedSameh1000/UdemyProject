@@ -22,5 +22,12 @@ namespace UdemyProject.Api.Controllers
             var Response = await _Mediator.Send(new GetCourseCategoriesModelQuery());
             return NewResult(Response);
         }
+
+        [HttpGet("Getlanguges")]
+        public async Task<IActionResult> Getlanguges()
+        {
+            var Response = await _Mediator.Send(new GetLangugesModelQuery());
+            return NewResult(Response);
+        }
     }
 }

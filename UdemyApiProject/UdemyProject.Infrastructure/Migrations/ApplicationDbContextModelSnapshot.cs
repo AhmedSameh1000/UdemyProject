@@ -258,11 +258,16 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<bool>("isPublished")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("langugeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("InstructorId");
+
+                    b.HasIndex("langugeId");
 
                     b.ToTable("Courses");
                 });
@@ -282,6 +287,23 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("courseCategories");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.CourseLanguge", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CourseLanguge");
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.CourseRequirment", b =>
@@ -468,9 +490,15 @@ namespace UdemyProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("UdemyProject.Domain.Entities.CourseLanguge", "languge")
+                        .WithMany("Courses")
+                        .HasForeignKey("langugeId");
+
                     b.Navigation("Instructor");
 
                     b.Navigation("category");
+
+                    b.Navigation("languge");
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.CourseRequirment", b =>
@@ -553,6 +581,11 @@ namespace UdemyProject.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("UdemyProject.Domain.Entities.CourseCategory", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("UdemyProject.Domain.Entities.CourseLanguge", b =>
                 {
                     b.Navigation("Courses");
                 });

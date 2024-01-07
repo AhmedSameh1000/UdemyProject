@@ -10,9 +10,11 @@
         public string? CourseLanguge { get; set; }
 
         public int CategoryId { get; set; }
+        public int? langugeId { get; set; }
         public string? Image { get; set; }
 
         public bool isPublished { get; set; }
+        public CourseLanguge languge { get; set; }
         public CourseCategory category { get; set; }
 
         public List<CourseRequirment> Requirments { get; set; }

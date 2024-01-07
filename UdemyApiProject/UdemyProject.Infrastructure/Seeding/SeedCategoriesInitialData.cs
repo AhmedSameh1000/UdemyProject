@@ -24,7 +24,7 @@ namespace UdemyProject.Infrastructure.Seeding
                 return;
             }
             await _CategoryRepository.AddRange(GetCategories());
-            var res = await _CategoryRepository.SaveChanges();
+            await _CategoryRepository.SaveChanges();
         }
 
         public List<CourseCategory> GetCategories()

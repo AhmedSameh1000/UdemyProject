@@ -26,10 +26,12 @@ using (var Scope = app.Services.CreateScope())
     var UserManger = Scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var RoleManger = Scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var CategoryRepository = Scope.ServiceProvider.GetRequiredService<ICourseCategoryRepository>();
+    var LangugeRepository = Scope.ServiceProvider.GetRequiredService<ICourseLangugeRepository>();
 
     await new SeedAdminWithRolesinitialData(RoleManger, UserManger).SeedData();
 
     await new SeedCategoriesInitialData(CategoryRepository).SeedCategories();
+    await new SeedLanguge(LangugeRepository).seedLanguge();
 }
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
