@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +53,20 @@ export class CourseService {
   GetCourseDetails(Id: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/GetCourseDetails?Id=${Id}`
+    );
+  }
+  GetCourseLandingPage(Id: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/CourseLandingPage?Id=${Id}`
+    );
+  }
+
+  GetStreamVideoPromotion(Id: any): Observable<ArrayBuffer> {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/StreamVideoPromotion?Id=${Id}`,
+      {
+        responseType: 'arraybuffer',
+      }
     );
   }
 

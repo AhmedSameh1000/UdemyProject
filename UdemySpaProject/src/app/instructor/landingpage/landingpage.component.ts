@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
 import { CourseCategoryService } from 'src/app/Services/course-category.service';
@@ -11,10 +12,13 @@ import { CourseService, MyData } from 'src/app/Services/course.service';
   styleUrls: ['./landingpage.component.css'],
 })
 export class LandingpageComponent implements OnInit, OnDestroy {
+  landingForm: FormGroup;
+
   constructor(
     private CourseService: CourseService,
     private CourseCategoryService: CourseCategoryService,
-    private ActivatedRoute: ActivatedRoute
+    private ActivatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) {}
   ngOnInit(): void {
     this.CreateLandingForm();
@@ -22,9 +26,56 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     this.SaveLandingpageData();
     this.GetCategories();
     this.Getlanguges();
+    this.LoadCourseLandingPage();
+    this.LoadStreamVideoPromotion();
   }
   ngOnDestroy(): void {
     this.Obs1.unsubscribe();
+  }
+  videoUrl: any;
+
+  LoadStreamVideoPromotion() {
+    this.CourseService.GetStreamVideoPromotion(this.CourseId).subscribe({
+      next: (response: ArrayBuffer) => {
+        const videoBlob = new Blob([response], { type: 'video/mp4' });
+        const videoUrl = URL.createObjectURL(videoBlob);
+        this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(videoUrl);
+
+        console.log(this.videoUrl);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  CourseImage: any;
+  LoadCourseLandingPage() {
+    this.CourseService.GetCourseLandingPage(this.CourseId).subscribe({
+      next: (res: any) => {
+        var Course = res.data;
+        this.landingForm.patchValue({
+          Title: Course.title,
+          Subtitle: Course.subTitle,
+          Decribtion: Course.description,
+          Languge: Course.langugeId,
+          Category: Course.categoryId,
+        });
+        this.CourseImage = Course.courseImage;
+      },
+    });
+  }
+
+  CreateLandingForm() {
+    this.landingForm = new FormGroup({
+      Title: new FormControl(null, [Validators.required]),
+      Subtitle: new FormControl(null, [Validators.required]),
+      Decribtion: new FormControl(null, [Validators.required]),
+      Languge: new FormControl(null, [Validators.required]),
+      Category: new FormControl(null, [Validators.required]),
+      Image: new FormControl(null),
+      PromotionVideo: new FormControl(null),
+    });
   }
   CourseId: any;
   GetCoursId() {
@@ -70,22 +121,25 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     return courseLandingDTO;
   }
 
-  CreateLandingForm() {
-    this.landingForm = new FormGroup({
-      Title: new FormControl(null, [Validators.required]),
-      Subtitle: new FormControl(null, [Validators.required]),
-      Decribtion: new FormControl(null, [Validators.required]),
-      Languge: new FormControl(null, [Validators.required]),
-      Category: new FormControl(null, [Validators.required]),
-      Image: new FormControl(null),
-      PromotionVideo: new FormControl(null),
-    });
-  }
-  SelectImage($event: any) {
-    this.landingForm.get('Image')?.setValue($event.target.files[0]);
+  SelectImage($event: any, img: HTMLImageElement) {
+    const file = $event.target.files[0];
+    img.parentElement.style.padding = '0';
+
+    img.style.width = '100%';
+    img.style.height = '100%';
+    if (file) {
+      const objectURL = URL.createObjectURL(file);
+      img.src = objectURL;
+
+      this.landingForm.get('Image')?.setValue(file);
+    }
   }
   SelectVideo($event: any) {
-    this.landingForm.get('PromotionVideo')?.setValue($event.target.files[0]);
+    const file = $event.target.files[0];
+
+    if (file) {
+      this.landingForm.get('PromotionVideo')?.setValue(file);
+    }
   }
 
   Categoris: any;
@@ -104,6 +158,4 @@ export class LandingpageComponent implements OnInit, OnDestroy {
       },
     });
   }
-
-  landingForm: FormGroup;
 }

@@ -12,5 +12,9 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<CourseForReturnDto> GetCourse(int Id);
 
         Task<bool> SaveCourseLanding(CourseLandingDTO courseLanding);
+
+        Task<CourseLandingPageForReturnDTO> GetCourseLandingPage(int Id);
+
+        Task<string> GetVideoPromotionCourse(int Id);
     }
 }

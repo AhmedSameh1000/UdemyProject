@@ -1,12 +1,12 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\97886af0-9c22-4ecb-a798-66a1644f2979.png",
-      "PackagePath": "staticwebassets\\CourseImages\\97886af0-9c22-4ecb-a798-66a1644f2979.png"
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\d86b8f9e-0dde-4d7b-a340-09a37422ceba.png",
+      "PackagePath": "staticwebassets\\CourseImages\\d86b8f9e-0dde-4d7b-a340-09a37422ceba.png"
     },
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\c94abe65-6b39-4056-a1d7-967bd5283b40.mp4",
-      "PackagePath": "staticwebassets\\PromotionalVideo\\c94abe65-6b39-4056-a1d7-967bd5283b40.mp4"
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\b9f939bc-1524-4eff-aa34-78e2c54b1102.mp4",
+      "PackagePath": "staticwebassets\\PromotionalVideo\\b9f939bc-1524-4eff-aa34-78e2c54b1102.mp4"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",

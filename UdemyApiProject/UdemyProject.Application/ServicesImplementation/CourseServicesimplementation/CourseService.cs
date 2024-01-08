@@ -115,6 +115,38 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return CourseForReturn;
         }
 
+        public async Task<CourseLandingPageForReturnDTO> GetCourseLandingPage(int Id)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id);
+            if (Course is null)
+            {
+                return null;
+            }
+            var CourseLandingPageForReturnDTO = new CourseLandingPageForReturnDTO()
+            {
+                CourseId = Id,
+                CategoryId = Course.CategoryId,
+                CourseImage = Course?.Image,
+                Description = Course?.Description,
+                LangugeId = Course.langugeId.HasValue ? Course.langugeId.Value : default,
+                SubTitle = Course?.SubTitle,
+                Title = Course?.Title,
+            };
+            return CourseLandingPageForReturnDTO;
+        }
+
+        public async Task<string> GetVideoPromotionCourse(int Id)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id);
+
+            if (Course is null || Course.CoursePromotionalVideo is null)
+            {
+                return null;
+            }
+            var CourseVideoPath = Course.CoursePromotionalVideo;
+            return CourseVideoPath;
+        }
+
         public async Task<bool> SaveCourseLanding(CourseLandingDTO courseLanding)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseLanding.CourseId);
@@ -123,11 +155,11 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             var VideoUrl = "";
             if (courseLanding.Image is not null)
             {
-                imageUrl = SaveFile(courseLanding.Image, "CourseImages");
+                imageUrl = SaveImageFile(courseLanding.Image, "CourseImages");
             }
             if (courseLanding.PromotionVideo is not null)
             {
-                VideoUrl = SaveFile(courseLanding.PromotionVideo, "PromotionalVideo");
+                VideoUrl = SaveVideoFile(courseLanding.PromotionVideo, "PromotionalVideo");
             }
 
             Course.Title = courseLanding.Title;
@@ -142,7 +174,24 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return await _CourseRepository.SaveChanges();
         }
 
-        private string SaveFile(IFormFile file, string wwwrootFilePath)
+        private string SaveVideoFile(IFormFile file, string wwwrootFilePath)
+        {
+            string RootPath = _Host.WebRootPath;
+            var VideoUrl = "";
+            string fileName = Guid.NewGuid().ToString();
+            string VideoFolderPath = Path.Combine(RootPath, wwwrootFilePath);
+            string extension = Path.GetExtension(file.FileName);
+            using (FileStream fileStreams = new(Path.Combine(VideoFolderPath,
+                            fileName + extension), FileMode.Create))
+            {
+                file.CopyTo(fileStreams);
+            }
+            VideoUrl = @$"{_Host.WebRootPath}/{wwwrootFilePath}/" + fileName + extension;
+
+            return VideoUrl;
+        }
+
+        private string SaveImageFile(IFormFile file, string wwwrootFilePath)
         {
             string RootPath = _Host.WebRootPath;
             var ImageUrl = "";

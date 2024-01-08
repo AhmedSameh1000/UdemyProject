@@ -13,7 +13,10 @@ using UdemyProject.Contracts.ServicesContracts;
 
 namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
 {
-    public class CourseHandlerQuery : ResponseHandlerModel, IRequestHandler<GetCourseDetailsModelQuery, ResponseModel<CourseForReturnDto>>
+    public class CourseHandlerQuery : ResponseHandlerModel,
+        IRequestHandler<GetCourseDetailsModelQuery, ResponseModel<CourseForReturnDto>>,
+        IRequestHandler<GetCourseLandingPageQuery, ResponseModel<CourseLandingPageForReturnDTO>>,
+        IRequestHandler<GetCourseVideoPromotionpathQuery, string>
     {
         private readonly ICourseService _CourseService;
 
@@ -31,6 +34,29 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             }
 
             return Success(CourseDetails);
+        }
+
+        public async Task<ResponseModel<CourseLandingPageForReturnDTO>> Handle(GetCourseLandingPageQuery request, CancellationToken cancellationToken)
+        {
+            var Course = await _CourseService.GetCourseLandingPage(request.CourseId);
+            if (Course == null)
+            {
+                return NotFound<CourseLandingPageForReturnDTO>();
+            }
+
+            return Success(Course);
+        }
+
+        public async Task<string> Handle(GetCourseVideoPromotionpathQuery request, CancellationToken cancellationToken)
+        {
+            var VideoPath = await _CourseService.GetVideoPromotionCourse(request.Id);
+
+            if (VideoPath is null)
+            {
+                return null;
+            }
+
+            return VideoPath;
         }
     }
 }
