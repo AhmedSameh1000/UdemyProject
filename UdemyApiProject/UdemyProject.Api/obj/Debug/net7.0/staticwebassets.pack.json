@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\97886af0-9c22-4ecb-a798-66a1644f2979.png",
+      "PackagePath": "staticwebassets\\CourseImages\\97886af0-9c22-4ecb-a798-66a1644f2979.png"
+    },
+    {
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\c94abe65-6b39-4056-a1d7-967bd5283b40.mp4",
+      "PackagePath": "staticwebassets\\PromotionalVideo\\c94abe65-6b39-4056-a1d7-967bd5283b40.mp4"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UdemyProject.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.UdemyProject.Api.props",
+      "PackagePath": "build\\UdemyProject.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.UdemyProject.Api.props",
+      "PackagePath": "buildMultiTargeting\\UdemyProject.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.UdemyProject.Api.props",
+      "PackagePath": "buildTransitive\\UdemyProject.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

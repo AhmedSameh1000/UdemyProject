@@ -238,6 +238,9 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<string>("CourseLanguge")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CoursePromotionalVideo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 

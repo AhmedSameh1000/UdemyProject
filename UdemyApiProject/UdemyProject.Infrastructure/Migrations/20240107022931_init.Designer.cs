@@ -12,7 +12,7 @@ using UdemyProject.Infrastructure.DbContext;
 namespace UdemyProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240107004359_init")]
+    [Migration("20240107022931_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -241,6 +241,9 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<string>("CourseLanguge")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CoursePromotionalVideo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -261,7 +264,7 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<bool>("isPublished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("langugeId")
+                    b.Property<int?>("langugeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -495,9 +498,7 @@ namespace UdemyProject.Infrastructure.Migrations
 
                     b.HasOne("UdemyProject.Domain.Entities.CourseLanguge", "languge")
                         .WithMany("Courses")
-                        .HasForeignKey("langugeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("langugeId");
 
                     b.Navigation("Instructor");
 

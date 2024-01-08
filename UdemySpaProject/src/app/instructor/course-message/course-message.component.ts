@@ -1,5 +1,5 @@
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
-import { CourseService, FormData } from './../../Services/course.service';
+import { CourseService, MyData } from './../../Services/course.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
@@ -16,7 +16,7 @@ export class CourseMessageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({
       next: (res) => {
-        var data = new FormData();
+        var data = new MyData();
 
         data.numberObComponent = ComponentNumbers.messageComponentnumber;
         this.CourseService.SetFiredData(data);

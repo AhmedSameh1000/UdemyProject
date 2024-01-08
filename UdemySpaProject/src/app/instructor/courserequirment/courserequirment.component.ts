@@ -1,4 +1,4 @@
-import { CourseService, FormData } from './../../Services/course.service';
+import { CourseService, MyData } from './../../Services/course.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -28,7 +28,7 @@ export class CourserequirmentComponent implements OnInit, OnDestroy {
   SaveRequirmentWhenFireAction() {
     this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({
       next: (res) => {
-        var data = new FormData();
+        var data = new MyData();
         data.Data = this.PrerequisiteForm.value;
         data.CourseId = this.CourseId;
         data.numberObComponent = ComponentNumbers.RequirmentComponentnumber;

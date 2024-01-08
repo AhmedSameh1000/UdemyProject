@@ -12,6 +12,7 @@
         public int CategoryId { get; set; }
         public int? langugeId { get; set; }
         public string? Image { get; set; }
+        public string? CoursePromotionalVideo { get; set; }
 
         public bool isPublished { get; set; }
         public CourseLanguge languge { get; set; }

@@ -216,8 +216,9 @@ namespace UdemyProject.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CourseLanguge = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    langugeId = table.Column<int>(type: "int", nullable: false),
+                    langugeId = table.Column<int>(type: "int", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CoursePromotionalVideo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isPublished = table.Column<bool>(type: "bit", nullable: false),
                     InstructorId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -234,8 +235,7 @@ namespace UdemyProject.Infrastructure.Migrations
                         name: "FK_Courses_CourseLanguge_langugeId",
                         column: x => x.langugeId,
                         principalTable: "CourseLanguge",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Courses_courseCategories_CategoryId",
                         column: x => x.CategoryId,

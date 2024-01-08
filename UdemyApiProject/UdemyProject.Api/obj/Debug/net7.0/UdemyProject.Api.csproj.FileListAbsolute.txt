@@ -199,3 +199,4 @@ C:\Users\Ahmed Sameh\Desktop\UdemyProject\UdemyApiProject\UdemyProject.Api\obj\D
 C:\Users\Ahmed Sameh\Desktop\UdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.sourcelink.json
 C:\Users\Ahmed Sameh\Desktop\UdemyProject\UdemyApiProject\UdemyProject.Api\bin\Debug\net7.0\JetBrains.Annotations.dll
 C:\Users\Ahmed Sameh\Desktop\UdemyProject\UdemyApiProject\UdemyProject.Api\bin\Debug\net7.0\X.PagedList.dll
+C:\Users\Ahmed Sameh\Desktop\UdemyProject\UdemyApiProject\UdemyProject.Api\bin\Debug\net7.0\UdemyProject.Api.staticwebassets.runtime.json

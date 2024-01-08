@@ -21,6 +21,7 @@ builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 builder.Services.AddInfrastructureRegistration(builder.Configuration).AddApplicationServices();
 
 var app = builder.Build();
+app.UseStaticFiles();
 using (var Scope = app.Services.CreateScope())
 {
     var UserManger = Scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();

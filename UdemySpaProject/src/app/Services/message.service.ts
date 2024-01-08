@@ -1,4 +1,4 @@
-import { FormData } from './course.service';
+import { MyData } from './course.service';
 import { GeneralCourse } from './general-course';
 import { Injectable } from '@angular/core';
 
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class MessageService implements GeneralCourse {
   constructor() {}
-  SaveCourse(formdata: FormData) {
+  SaveCourse(formdata: MyData) {
     console.log('In Mesage Service');
     console.log(formdata);
   }

@@ -7,12 +7,12 @@ import { Subject } from 'rxjs';
 })
 export class CourseService {
   constructor(private HttpClient: HttpClient) {
-    this.FiredData = new Subject<FormData>(); // Initialize FiredData here
+    this.FiredData = new Subject<MyData>(); // Initialize FiredData here
   }
 
   ComponentRedirection = new Subject<number>();
   CourseActionFire = new Subject<void>();
-  FiredData: Subject<FormData>; // Initialized in the constructor
+  FiredData: Subject<MyData>; // Initialized in the constructor
 
   EmitComponentNumber(ComponentNumber: number) {
     this.ComponentRedirection.next(ComponentNumber);
@@ -36,6 +36,12 @@ export class CourseService {
       BasicCourse
     );
   }
+  SaveCourseLandingPage(CourseLandingPage: any) {
+    return this.HttpClient.post(
+      'http://localhost:5227/api/Course/SaveCourseLanding',
+      CourseLandingPage
+    );
+  }
 
   CreateCourseRequirments(Requirments: any) {
     return this.HttpClient.post(
@@ -50,7 +56,7 @@ export class CourseService {
     );
   }
 
-  SetFiredData(Data: FormData) {
+  SetFiredData(Data: MyData) {
     this.FiredData.next(Data);
   }
 
@@ -59,7 +65,7 @@ export class CourseService {
   }
 }
 
-export class FormData {
+export class MyData {
   Data: any;
   CourseId: number;
   numberObComponent: number;

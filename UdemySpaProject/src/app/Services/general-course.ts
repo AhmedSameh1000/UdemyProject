@@ -1,5 +1,5 @@
-import { FormData } from './course.service';
+import { MyData } from './course.service';
 
 export interface GeneralCourse {
-  SaveCourse(formdata: FormData);
+  SaveCourse(formdata: MyData);
 }

@@ -1,4 +1,4 @@
-<form class="p-3" [formGroup]="landingForm">
+<form class="p-3" [formGroup]="landingForm" enctype="multipart/form-data">
   <h1 class="text-start fw-bold ms-1 mt-3">Course landing page</h1>
   <hr />
   <p class="text-start mt-3">
@@ -90,7 +90,13 @@
               pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
             </div>
             <div>
-              <input type="file" class="form-control" />
+              <input
+                type="file"
+                class="form-control"
+                (change)="SelectImage($event)"
+                id="image"
+                name="Image"
+              />
             </div>
           </div>
         </div>
@@ -118,7 +124,13 @@
               well-made. Learn how to make your promo video awesome!
             </div>
             <div>
-              <input type="file" class="form-control" />
+              <input
+                type="file"
+                class="form-control"
+                (change)="SelectVideo($event)"
+                id="PromotionVideo"
+                name="PromotionVideo"
+              />
             </div>
           </div>
         </div>

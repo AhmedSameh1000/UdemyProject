@@ -1,4 +1,4 @@
-import { CourseService, FormData } from './../../Services/course.service';
+import { CourseService, MyData } from './../../Services/course.service';
 import { Component, OnInit } from '@angular/core';
 import { RequirmentService } from 'src/app/Services/requirment.service';
 import { MessageService } from 'src/app/Services/message.service';
@@ -29,7 +29,7 @@ export class CourseheaderComponent implements OnInit {
     });
   }
 
-  SaveCourse(numberOfComponent: number, data: FormData) {
+  SaveCourse(numberOfComponent: number, data: MyData) {
     // Choose the service based on NumberOfComponent
     const selectedService: GeneralCourse =
       this.GetSelectedServices(numberOfComponent);
