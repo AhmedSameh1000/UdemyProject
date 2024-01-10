@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { InstructorModule } from './instructor/instructor.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,10 @@ import { InstructorModule } from './instructor/instructor.module';
     ReactiveFormsModule,
     HttpClientModule,
     InstructorModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      closeButton: true,
+    }),
   ],
   providers: [
     {

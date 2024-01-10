@@ -97,6 +97,20 @@ namespace SimpleEcommerce.Infrastructure.RepositoryImplementation
             return await Query.ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAsTracking(Expression<Func<T, bool>> filter, string[] InclueProperties = null)
+        {
+            IQueryable<T> Query = _dbContext.Set<T>().AsQueryable();
+            Query = Query.Where(filter);
+            if (InclueProperties != null)
+            {
+                foreach (var includeProperty in InclueProperties)
+                {
+                    Query = Query.Include(includeProperty.Trim());
+                }
+            }
+            return await Query.ToListAsync();
+        }
+
         public void Remove(T Entity)
         {
             _dbContext.Set<T>().Remove(Entity);

@@ -1,11 +1,11 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\d86b8f9e-0dde-4d7b-a340-09a37422ceba.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\07a88a27-7b80-46cc-a0bb-3b21c5178860.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>UdemyProject.Api</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/UdemyProject.Api</BasePath>
-      <RelativePath>CourseImages/d86b8f9e-0dde-4d7b-a340-09a37422ceba.png</RelativePath>
+      <RelativePath>CourseImages/07a88a27-7b80-46cc-a0bb-3b21c5178860.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -14,14 +14,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\d86b8f9e-0dde-4d7b-a340-09a37422ceba.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CourseImages\07a88a27-7b80-46cc-a0bb-3b21c5178860.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\b9f939bc-1524-4eff-aa34-78e2c54b1102.mp4))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\bfd069e0-4236-426b-a43b-aa37bfda5cad.mp4))">
       <SourceType>Package</SourceType>
       <SourceId>UdemyProject.Api</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/UdemyProject.Api</BasePath>
-      <RelativePath>PromotionalVideo/b9f939bc-1524-4eff-aa34-78e2c54b1102.mp4</RelativePath>
+      <RelativePath>PromotionalVideo/bfd069e0-4236-426b-a43b-aa37bfda5cad.mp4</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -30,7 +30,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\b9f939bc-1524-4eff-aa34-78e2c54b1102.mp4))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\PromotionalVideo\bfd069e0-4236-426b-a43b-aa37bfda5cad.mp4))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

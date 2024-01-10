@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oC//xuM97YZ/hebNPf1lcug0GXDXdw1/f8B6HrAiQ/HuAfQJr67JYA0RfLlmDh77hJqsiBVB8u8luveYY4uDgQ==",
+  "dgSpecHash": "9XGQ+YW7M+ssnd5TIp7nf5/Qh/fWzWNrzhSHeX5IWz9kUbq4NLm1rpLRETqroIeov2ttgwkE8E/5JLMT+jmqGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\UdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj",
+  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

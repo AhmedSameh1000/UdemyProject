@@ -108,16 +108,28 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     courseLandingDTO.append('Description', this.landingForm.value.Decribtion);
     courseLandingDTO.append('LangugeId', this.landingForm.value.Languge);
     courseLandingDTO.append('CategoryId', this.landingForm.value.Category);
-    courseLandingDTO.append(
-      'Image',
-      this.landingForm.value['Image'],
-      this.landingForm.value['Image'].name
-    );
-    courseLandingDTO.append(
-      'PromotionVideo',
-      this.landingForm.get('PromotionVideo').value,
-      this.landingForm.get('PromotionVideo').value?.name
-    );
+
+    if (
+      this.landingForm.get('Image').value != null ||
+      this.landingForm.get('Image').value != undefined
+    ) {
+      courseLandingDTO.append(
+        'Image',
+        this.landingForm.value['Image'],
+        this.landingForm.value['Image'].name
+      );
+    }
+    if (
+      this.landingForm.get('PromotionVideo').value != null ||
+      this.landingForm.get('PromotionVideo').value != undefined
+    ) {
+      courseLandingDTO.append(
+        'PromotionVideo',
+        this.landingForm.get('PromotionVideo').value,
+        this.landingForm.get('PromotionVideo').value.name
+      );
+    }
+
     return courseLandingDTO;
   }
 
@@ -134,8 +146,9 @@ export class LandingpageComponent implements OnInit, OnDestroy {
       this.landingForm.get('Image')?.setValue(file);
     }
   }
-  SelectVideo($event: any) {
+  SelectVideo($event: any, video: HTMLVideoElement, img: HTMLImageElement) {
     const file = $event.target.files[0];
+    video.src = URL.createObjectURL(file);
 
     if (file) {
       this.landingForm.get('PromotionVideo')?.setValue(file);

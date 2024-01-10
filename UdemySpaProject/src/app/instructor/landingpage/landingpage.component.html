@@ -119,17 +119,19 @@
             class="h-100 p-0 col-12 col-lg-5 d-flex justify-content-center align-items-center"
           >
             <img
-              *ngIf="videoUrl == null"
+              [ngClass]="{ 'd-none': videoUrl != null }"
               style="height: 95%; width: 97%"
               src="../../../assets/defaultCourseImage/placeholder.jpg"
               alt=""
+              #imagevideo
             />
             <video
-              *ngIf="videoUrl != null"
+              [ngClass]="{ 'd-none': videoUrl == null }"
               width="100%"
               height="100%"
               [src]="videoUrl"
               controls
+              #vid
             ></video>
           </div>
           <div class="col-12 col-lg-6 d-flex justify-content-start flex-column">
@@ -143,7 +145,7 @@
               <input
                 type="file"
                 class="form-control"
-                (change)="SelectVideo($event)"
+                (change)="SelectVideo($event, vid, imagevideo)"
                 id="PromotionVideo"
                 name="PromotionVideo"
               />

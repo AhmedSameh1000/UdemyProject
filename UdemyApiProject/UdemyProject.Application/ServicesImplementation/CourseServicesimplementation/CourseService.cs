@@ -58,13 +58,13 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
                 return;
             }
 
-            var Req = await _CourseRequimentRepository.GetAllAsNoTracking(c => c.CourseId == Course.Id);
+            var Req = await _CourseRequimentRepository.GetAllAsTracking(c => c.CourseId == Course.Id);
             _CourseRequimentRepository.RemoveRange(Req);
 
-            var what = await _WhatYouLearnFromCourseRepository.GetAllAsNoTracking(c => c.CourseId == Course.Id);
+            var what = await _WhatYouLearnFromCourseRepository.GetAllAsTracking(c => c.CourseId == Course.Id);
             _WhatYouLearnFromCourseRepository.RemoveRange(what);
 
-            var who = await _WhoIsThisCourseForRepository.GetAllAsNoTracking(c => c.CourseId == Course.Id);
+            var who = await _WhoIsThisCourseForRepository.GetAllAsTracking(c => c.CourseId == Course.Id);
             _WhoIsThisCourseForRepository.RemoveRange(who);
             await _WhoIsThisCourseForRepository.SaveChanges();
 
@@ -72,14 +72,17 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 Text = c
             }));
+
             Course.whoIsthisCoursefors.AddRange(prerequisiteDTO.WhoIsCourseFor.Select(c => new WhoIsthisCoursefor
             {
                 Text = c
             }));
+
             Course.whatYouLearnFromCourse.AddRange(prerequisiteDTO.WhateYouLearnFromCourse.Select(c => new WhatYouLearnFromCourse
             {
                 Text = c
             }));
+
             _CourseRepository.Update(Course);
             await _CourseRepository.SaveChanges();
         }
@@ -126,7 +129,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 CourseId = Id,
                 CategoryId = Course.CategoryId,
-                CourseImage = Course?.Image,
+                CourseImage = Course.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", Course.Image),
                 Description = Course?.Description,
                 LangugeId = Course.langugeId.HasValue ? Course.langugeId.Value : default,
                 SubTitle = Course?.SubTitle,
@@ -143,7 +146,8 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 return null;
             }
-            var CourseVideoPath = Course.CoursePromotionalVideo;
+            //var CourseVideoPath = Course.CoursePromotionalVideo;
+            var CourseVideoPath = Path.Combine(_Host.WebRootPath, "PromotionalVideo", Course.CoursePromotionalVideo);
             return CourseVideoPath;
         }
 
@@ -151,15 +155,33 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseLanding.CourseId);
             if (Course is null) return false;
-            var imageUrl = "";
-            var VideoUrl = "";
+
             if (courseLanding.Image is not null)
             {
-                imageUrl = SaveImageFile(courseLanding.Image, "CourseImages");
+                if (Course.Image != null)
+                {
+                    var path = Path.Combine(_Host.WebRootPath, "CourseImages", Path.GetFileName(Course.Image));
+                    var IsExist = Path.Exists(path);
+                    if (IsExist)
+                    {
+                        File.Delete(path);
+                    }
+                }
+                Course.Image = SaveFile(courseLanding.Image, Path.Combine(_Host.WebRootPath, "CourseImages"));
             }
+
             if (courseLanding.PromotionVideo is not null)
             {
-                VideoUrl = SaveVideoFile(courseLanding.PromotionVideo, "PromotionalVideo");
+                if (Course.CoursePromotionalVideo != null)
+                {
+                    var path = Path.Combine(_Host.WebRootPath, "PromotionalVideo", Path.GetFileName(Course.CoursePromotionalVideo));
+                    var IsExist = Path.Exists(path);
+                    if (IsExist)
+                    {
+                        File.Delete(path);
+                    }
+                }
+                Course.CoursePromotionalVideo = SaveFile(courseLanding.PromotionVideo, Path.Combine(_Host.WebRootPath, "PromotionalVideo"));
             }
 
             Course.Title = courseLanding.Title;
@@ -167,45 +189,24 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             Course.SubTitle = courseLanding.SubTitle;
             Course.Description = courseLanding.Description;
             Course.langugeId = courseLanding.LangugeId;
-            Course.CategoryId = courseLanding.CategoryId;
-            Course.Image = imageUrl;
-            Course.CoursePromotionalVideo = VideoUrl;
+            Course.CategoryId = courseLanding.CategoryId.Value;
             _CourseRepository.Update(Course);
             return await _CourseRepository.SaveChanges();
         }
 
-        private string SaveVideoFile(IFormFile file, string wwwrootFilePath)
+        private string SaveFile(IFormFile file, string FolderPath)
         {
-            string RootPath = _Host.WebRootPath;
-            var VideoUrl = "";
+            var FileUrl = "";
             string fileName = Guid.NewGuid().ToString();
-            string VideoFolderPath = Path.Combine(RootPath, wwwrootFilePath);
             string extension = Path.GetExtension(file.FileName);
-            using (FileStream fileStreams = new(Path.Combine(VideoFolderPath,
+            using (FileStream fileStreams = new(Path.Combine(FolderPath,
                             fileName + extension), FileMode.Create))
             {
                 file.CopyTo(fileStreams);
             }
-            VideoUrl = @$"{_Host.WebRootPath}/{wwwrootFilePath}/" + fileName + extension;
 
-            return VideoUrl;
-        }
-
-        private string SaveImageFile(IFormFile file, string wwwrootFilePath)
-        {
-            string RootPath = _Host.WebRootPath;
-            var ImageUrl = "";
-            string fileName = Guid.NewGuid().ToString();
-            string imageFolderPath = Path.Combine(RootPath, wwwrootFilePath);
-            string extension = Path.GetExtension(file.FileName);
-            using (FileStream fileStreams = new(Path.Combine(imageFolderPath,
-                            fileName + extension), FileMode.Create))
-            {
-                file.CopyTo(fileStreams);
-            }
-            ImageUrl = @$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}/{wwwrootFilePath}/" + fileName + extension;
-
-            return ImageUrl;
+            FileUrl = fileName + extension;
+            return FileUrl;
         }
     }
 }

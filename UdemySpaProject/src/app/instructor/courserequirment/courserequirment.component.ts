@@ -2,8 +2,8 @@ import { CourseService, MyData } from './../../Services/course.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
-
 @Component({
   selector: 'app-courserequirment',
   templateUrl: './courserequirment.component.html',
@@ -12,7 +12,8 @@ import { ComponentNumbers } from 'src/app/Models/component-numbers';
 export class CourserequirmentComponent implements OnInit, OnDestroy {
   constructor(
     private CourseService: CourseService,
-    private ActivatedRoute: ActivatedRoute
+    private ActivatedRoute: ActivatedRoute,
+    private Toastr: ToastrService
   ) {}
   ngOnDestroy(): void {
     this.Obs1.unsubscribe();
@@ -28,6 +29,7 @@ export class CourserequirmentComponent implements OnInit, OnDestroy {
   SaveRequirmentWhenFireAction() {
     this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({
       next: (res) => {
+        console.log(this.PrerequisiteForm);
         var data = new MyData();
         data.Data = this.PrerequisiteForm.value;
         data.CourseId = this.CourseId;
