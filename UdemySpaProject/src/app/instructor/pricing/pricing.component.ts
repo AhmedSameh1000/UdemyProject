@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ComponentNumbers } from 'src/app/Models/component-numbers';
 
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
-  styleUrls: ['./pricing.component.css']
+  styleUrls: ['./pricing.component.css'],
 })
-export class PricingComponent {
-
+export class PricingComponent implements OnInit {
+  ngOnInit(): void {
+    localStorage.setItem(
+      'SelectedComponent',
+      ComponentNumbers.pricingComponentnumber.toString()
+    );
+  }
 }

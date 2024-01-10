@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ComponentNumbers } from 'src/app/Models/component-numbers';
 import { CourseCategoryService } from 'src/app/Services/course-category.service';
 import { CourseService, MyData } from 'src/app/Services/course.service';
@@ -18,9 +19,14 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     private CourseService: CourseService,
     private CourseCategoryService: CourseCategoryService,
     private ActivatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private Toastr: ToastrService
   ) {}
   ngOnInit(): void {
+    localStorage.setItem(
+      'SelectedComponent',
+      ComponentNumbers.landingpageComponentnumber.toString()
+    );
     this.CreateLandingForm();
     this.GetCoursId();
     this.SaveLandingpageData();
@@ -40,12 +46,8 @@ export class LandingpageComponent implements OnInit, OnDestroy {
         const videoBlob = new Blob([response], { type: 'video/mp4' });
         const videoUrl = URL.createObjectURL(videoBlob);
         this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(videoUrl);
-
-        console.log(this.videoUrl);
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => {},
     });
   }
 
@@ -133,9 +135,20 @@ export class LandingpageComponent implements OnInit, OnDestroy {
     return courseLandingDTO;
   }
 
+  AllowedImageExtension = ['jpg', 'jpeg', 'gif', 'png'];
   SelectImage($event: any, img: HTMLImageElement) {
     const file = $event.target.files[0];
+    var extension: string = file.name.split('.')[1];
+
+    if (!this.AllowedImageExtension.includes(extension)) {
+      this.Toastr.warning('File not allowed choose valid one');
+
+      return;
+    }
+    console.log(extension)[1];
     img.parentElement.style.padding = '0';
+
+    console.log();
 
     img.style.width = '100%';
     img.style.height = '100%';
@@ -146,10 +159,17 @@ export class LandingpageComponent implements OnInit, OnDestroy {
       this.landingForm.get('Image')?.setValue(file);
     }
   }
+  AllowedVideoExtension = 'mp4';
   SelectVideo($event: any, video: HTMLVideoElement, img: HTMLImageElement) {
     const file = $event.target.files[0];
     video.src = URL.createObjectURL(file);
+    var extension: string = file.name.split('.')[1];
 
+    if (this.AllowedVideoExtension != extension) {
+      this.Toastr.warning('File not allowed choose valid one');
+
+      return;
+    }
     if (file) {
       this.landingForm.get('PromotionVideo')?.setValue(file);
     }

@@ -303,3 +303,5 @@ C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Api
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.pdb
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\UdemyProject.Api.genruntimeconfig.cache
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Api\obj\Debug\net7.0\ref\UdemyProject.Api.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Api\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Api\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

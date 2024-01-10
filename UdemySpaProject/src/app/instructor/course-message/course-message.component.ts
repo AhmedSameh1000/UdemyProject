@@ -14,6 +14,10 @@ export class CourseMessageComponent implements OnInit, OnDestroy {
   }
   Obs1: any;
   ngOnInit(): void {
+    localStorage.setItem(
+      'SelectedComponent',
+      ComponentNumbers.messageComponentnumber.toString()
+    );
     this.Obs1 = this.CourseService.GetCourseFireAction().subscribe({
       next: (res) => {
         var data = new MyData();

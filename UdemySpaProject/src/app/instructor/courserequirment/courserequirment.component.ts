@@ -21,6 +21,10 @@ export class CourserequirmentComponent implements OnInit, OnDestroy {
 
   Obs1: any;
   ngOnInit(): void {
+    localStorage.setItem(
+      'SelectedComponent',
+      ComponentNumbers.RequirmentComponentnumber.toString()
+    );
     this.CreateCoursePrerequisiteForm();
     this.GetCoursId();
     this.LoadCourses();

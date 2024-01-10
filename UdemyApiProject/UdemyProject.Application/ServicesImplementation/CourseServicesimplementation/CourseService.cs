@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using AutoMapper;
+using Azure.Core;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using SimpleEcommerce.Infrastructure.RepositoryImplementation;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
@@ -17,11 +21,13 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
         private readonly IWhoIsThisCourseForRepository _WhoIsThisCourseForRepository;
         private readonly IWebHostEnvironment _Host;
         private readonly IHttpContextAccessor _HttpContextAccessor;
+        private readonly IMapper _Mapper;
 
         public CourseService(ICourseRepository courseRepository, ICourseRequimentRepository courseRequimentRepository,
             IWhatYouLearnFromCourseRepository whatYouLearnFromCourseRepository,
             IWhoIsThisCourseForRepository whoIsThisCourseForRepository,
-            IWebHostEnvironment host, IHttpContextAccessor httpContextAccessor)
+            IWebHostEnvironment host, IHttpContextAccessor httpContextAccessor,
+            IMapper mapper)
         {
             _CourseRepository = courseRepository;
             _CourseRequimentRepository = courseRequimentRepository;
@@ -29,6 +35,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _WhoIsThisCourseForRepository = whoIsThisCourseForRepository;
             _Host = host;
             _HttpContextAccessor = httpContextAccessor;
+            _Mapper = mapper;
         }
 
         public async Task<int> CreateBasicCourse(CourseBasicDataDTO courseBasic)
@@ -37,12 +44,9 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 return -1;
             }
-            var Course = new Course()
-            {
-                Title = courseBasic.Name,
-                CategoryId = courseBasic.Category,
-                InstructorId = courseBasic.InstructorId,
-            };
+
+            var Course = new Course();
+            _Mapper.Map(courseBasic, Course);
             await _CourseRepository.Add(Course);
             await _CourseRepository.SaveChanges();
 
@@ -68,20 +72,23 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             _WhoIsThisCourseForRepository.RemoveRange(who);
             await _WhoIsThisCourseForRepository.SaveChanges();
 
-            Course.Requirments.AddRange(prerequisiteDTO.Requiments.Select(c => new CourseRequirment
-            {
-                Text = c
-            }));
+            var Requirment = new List<CourseRequirment>();
 
-            Course.whoIsthisCoursefors.AddRange(prerequisiteDTO.WhoIsCourseFor.Select(c => new WhoIsthisCoursefor
-            {
-                Text = c
-            }));
+            _Mapper.Map(prerequisiteDTO, Requirment);
 
-            Course.whatYouLearnFromCourse.AddRange(prerequisiteDTO.WhateYouLearnFromCourse.Select(c => new WhatYouLearnFromCourse
-            {
-                Text = c
-            }));
+            Course.Requirments.AddRange(Requirment);
+
+            var WhoisTHisCoureFor = new List<WhoIsthisCoursefor>();
+
+            _Mapper.Map(prerequisiteDTO, WhoisTHisCoureFor);
+
+            Course.whoIsthisCoursefors.AddRange(WhoisTHisCoureFor);
+
+            var whatYouLearnFromCourse = new List<WhatYouLearnFromCourse>();
+
+            _Mapper.Map(prerequisiteDTO, whatYouLearnFromCourse);
+
+            Course.whatYouLearnFromCourse.AddRange(whatYouLearnFromCourse);
 
             _CourseRepository.Update(Course);
             await _CourseRepository.SaveChanges();
@@ -93,27 +100,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             if (Course is null)
                 return null;
 
-            var CourseForReturn = new CourseForReturnDto()
-            {
-                CourseId = Id,
-                Requirments = Course.Requirments.Select(c => new GenralModelCourseDetailsDTo()
-                {
-                    Id = c.Id,
-                    Name = c.Text
-                }).ToList(),
-
-                WhateWillYouLearnFromCourse = Course.whatYouLearnFromCourse.Select(c => new GenralModelCourseDetailsDTo()
-                {
-                    Id = c.Id,
-                    Name = c.Text
-                }).ToList(),
-
-                WhoIsThisCourseFor = Course.whoIsthisCoursefors.Select(c => new GenralModelCourseDetailsDTo()
-                {
-                    Id = c.Id,
-                    Name = c.Text
-                }).ToList(),
-            };
+            var CourseForReturn = _Mapper.Map<CourseForReturnDto>(Course);
 
             return CourseForReturn;
         }

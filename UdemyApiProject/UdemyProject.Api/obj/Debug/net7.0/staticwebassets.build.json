@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BmSgw5F0Jzeu70F5Fhw0g6051mdc0Zr69rkgt042Dto=",
+  "Hash": "SM76JaOYOjedpjOv17SgQZYSX0GeFKDuqs3P0KWEnMQ=",
   "Source": "UdemyProject.Api",
   "BasePath": "_content/UdemyProject.Api",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\07a88a27-7b80-46cc-a0bb-3b21c5178860.jpg",
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\c6a42a4c-88e1-415b-b010-2b264d00e8e7.png",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
-      "RelativePath": "CourseImages/07a88a27-7b80-46cc-a0bb-3b21c5178860.jpg",
+      "RelativePath": "CourseImages/c6a42a4c-88e1-415b-b010-2b264d00e8e7.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\CourseImages\\07a88a27-7b80-46cc-a0bb-3b21c5178860.jpg"
+      "OriginalItemSpec": "wwwroot\\CourseImages\\c6a42a4c-88e1-415b-b010-2b264d00e8e7.png"
     },
     {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\bfd069e0-4236-426b-a43b-aa37bfda5cad.mp4",
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\d2e39f89-74e3-4933-bbc6-f81be804e0de.mp4",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
-      "RelativePath": "PromotionalVideo/bfd069e0-4236-426b-a43b-aa37bfda5cad.mp4",
+      "RelativePath": "PromotionalVideo/d2e39f89-74e3-4933-bbc6-f81be804e0de.mp4",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\PromotionalVideo\\bfd069e0-4236-426b-a43b-aa37bfda5cad.mp4"
+      "OriginalItemSpec": "wwwroot\\PromotionalVideo\\d2e39f89-74e3-4933-bbc6-f81be804e0de.mp4"
     }
   ]
 }

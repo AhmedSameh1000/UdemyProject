@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9XGQ+YW7M+ssnd5TIp7nf5/Qh/fWzWNrzhSHeX5IWz9kUbq4NLm1rpLRETqroIeov2ttgwkE8E/5JLMT+jmqGw==",
+  "dgSpecHash": "rOiWZIgno4AwlAnKdr/rLS3doOun6tAKXxcDazYlNiMehFXjNlAoukrV6C6sDNNuEsSpjN09pEokXInTfHkWmg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Application\\UdemyProject.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
@@ -17,7 +19,7 @@
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.14\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.14.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.0\\microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.14\\microsoft.entityframeworkcore.7.0.14.nupkg.sha512",

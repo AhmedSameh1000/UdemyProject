@@ -74,6 +74,7 @@ namespace UdemyProject.Application
 
             #endregion Localization
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IAuthServices, AuthServices>();
             services.AddScoped<ICourseLangugeService, CourseLangugeService>();
             services.AddScoped<ICourseCategoryService, CourseCategoryService>();

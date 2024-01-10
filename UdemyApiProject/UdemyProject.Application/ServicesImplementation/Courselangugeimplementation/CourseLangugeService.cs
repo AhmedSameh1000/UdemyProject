@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,20 +14,23 @@ namespace UdemyProject.Application.ServicesImplementation.Courselangugeimplement
     public class CourseLangugeService : ICourseLangugeService
     {
         private readonly ICourseLangugeRepository _CourseLangugeRepository;
+        private readonly IMapper _Mapper;
 
-        public CourseLangugeService(ICourseLangugeRepository courseLangugeRepository)
+        public CourseLangugeService(
+            ICourseLangugeRepository courseLangugeRepository,
+            IMapper mapper
+            )
         {
             _CourseLangugeRepository = courseLangugeRepository;
+            _Mapper = mapper;
         }
 
         public async Task<List<CourselangugeDTO>> GetAlllanguge()
         {
             var languges = await _CourseLangugeRepository.GetAllAsNoTracking();
-            return languges.Select(c => new CourselangugeDTO()
-            {
-                Id = c.Id,
-                Name = c.Name,
-            }).ToList();
+            var Languges = _Mapper.Map<List<CourselangugeDTO>>(languges);
+
+            return Languges;
         }
     }
 }

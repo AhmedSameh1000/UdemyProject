@@ -1,4 +1,5 @@
-﻿using UdemyProject.Contract.RepositoryContracts;
+﻿using AutoMapper;
+using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.CourseCategoryDTOs;
 using UdemyProject.Contracts.ServicesContracts;
 
@@ -7,21 +8,25 @@ namespace UdemyProject.Application.ServicesImplementation.CourseCategoriesServic
     internal class CourseCategoryService : ICourseCategoryService
     {
         private readonly ICourseCategoryRepository _CourseCategoryRepository;
+        private readonly IMapper _Mapper;
 
-        public CourseCategoryService(ICourseCategoryRepository courseCategoryRepository)
+        public CourseCategoryService(
+            ICourseCategoryRepository courseCategoryRepository,
+            IMapper mapper
+            )
         {
             _CourseCategoryRepository = courseCategoryRepository;
+            _Mapper = mapper;
         }
 
         public async Task<List<CourseCategoryDTO>> GetCourseCategories()
         {
             var Categories = await _CourseCategoryRepository.GetAllAsNoTracking();
 
-            return Categories.Select(c => new CourseCategoryDTO()
-            {
-                Id = c.Id,
-                Name = c.Name,
-            }).ToList();
+            var CategoriesForReturn = _Mapper.Map<List<CourseCategoryDTO>>(Categories);
+
+
+            return CategoriesForReturn;
         }
     }
 }
