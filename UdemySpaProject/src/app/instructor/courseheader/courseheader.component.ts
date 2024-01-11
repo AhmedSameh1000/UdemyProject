@@ -24,7 +24,12 @@ export class CourseheaderComponent implements OnInit {
   ngOnInit(): void {
     this.courseService.GetFiredData().subscribe({
       next: (data) => {
-        this.SaveCourse(data.numberObComponent, data);
+        if (
+          data.isDirty ||
+          data.numberObComponent == ComponentNumbers.RequirmentComponentnumber
+        ) {
+          this.SaveCourse(data.numberObComponent, data);
+        }
       },
     });
   }

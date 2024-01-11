@@ -96,6 +96,7 @@ export class LandingpageComponent implements OnInit, OnDestroy {
         var data = new MyData();
         data.Data = this.CreateFormDataForSaveCourse();
         data.CourseId = this.CourseId;
+        data.isDirty = this.landingForm.dirty;
         data.numberObComponent = ComponentNumbers.landingpageComponentnumber;
         this.CourseService.SetFiredData(data);
       },

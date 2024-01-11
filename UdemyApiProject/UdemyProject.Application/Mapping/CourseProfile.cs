@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
 using UdemyProject.Domain.Entities;
@@ -19,6 +14,8 @@ namespace UdemyProject.Application.Mapping
             mapFromCourseRequirmentDTO_whoIsthisCoursefors();
             mapFromCourseRequirmentDTO_whatYouLearnFromCourse();
             MapFromGenralModelCourseDetailsDTo_Requirment_Who_What();
+            MapFromCourseMessageForUpdateDTO_Course();
+            MapFromCourseMessageForReturnDTO_Course();
         }
 
         public void MapFromCourseBasicData_Course()
@@ -56,6 +53,20 @@ namespace UdemyProject.Application.Mapping
               {
                   dest.AddRange(src.WhateYouLearnFromCourse.Select(c => new WhatYouLearnFromCourse { Text = c }));
               });
+        }
+
+        public void MapFromCourseMessageForUpdateDTO_Course()
+        {
+            CreateMap<CourseMessageForUpdateDTO, Course>()
+                .ForMember(c => c.Id, opt => opt.MapFrom(c => c.CourseId))
+                .ForMember(c => c.InstructorId, opt => opt.Ignore())
+                .ForMember(c => c.CongratulationsMessage, opt => opt.MapFrom(c => c.CongratulationsMessage))
+                .ForMember(c => c.WelcomeMessage, opt => opt.MapFrom(c => c.WelcomeMessage)).ReverseMap();
+        }
+
+        public void MapFromCourseMessageForReturnDTO_Course()
+        {
+            CreateMap<CourseMessageForReturnDTo, Course>().ReverseMap();
         }
 
         public void MapFromGenralModelCourseDetailsDTo_Requirment_Who_What()

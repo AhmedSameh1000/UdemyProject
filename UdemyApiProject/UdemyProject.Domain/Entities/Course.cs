@@ -27,6 +27,8 @@
 
         public string InstructorId { get; set; }
         public ApplicationUser Instructor { get; set; }
+        public string? WelcomeMessage { get; set; }
+        public string? CongratulationsMessage { get; set; }
 
         public double CountofNotNullValues()
         {

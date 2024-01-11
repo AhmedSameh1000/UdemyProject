@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Localization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using UdemyProject.Application.Features.Course.CourseQueries.Models;
 using UdemyProject.Application.ResponseHandler;
 using UdemyProject.Application.Shared;
@@ -17,7 +13,8 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
         IRequestHandler<GetCourseDetailsModelQuery, ResponseModel<CourseForReturnDto>>,
         IRequestHandler<GetCourseLandingPageQuery, ResponseModel<CourseLandingPageForReturnDTO>>,
         IRequestHandler<GetCourseVideoPromotionpathQuery, string>,
-        IRequestHandler<GetCoursesForInstructorModelQuery, ResponseModel<List<InstructorMinimalCourses>>>
+        IRequestHandler<GetCoursesForInstructorModelQuery, ResponseModel<List<InstructorMinimalCourses>>>,
+        IRequestHandler<GetCourseMessageModelQuery, ResponseModel<CourseMessageForReturnDTo>>
     {
         private readonly ICourseService _CourseService;
 
@@ -65,6 +62,15 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             var Response = await _CourseService.GetInstructorCourse(request.Id);
 
             return Success(Response);
+        }
+
+        public async Task<ResponseModel<CourseMessageForReturnDTo>> Handle(GetCourseMessageModelQuery request, CancellationToken cancellationToken)
+        {
+            var CourseForeturn = await _CourseService.GetCourseMessage(request.Id);
+            if (CourseForeturn is null)
+                return BadRequest<CourseMessageForReturnDTo>("ERR,ERR");
+
+            return Success(CourseForeturn);
         }
     }
 }

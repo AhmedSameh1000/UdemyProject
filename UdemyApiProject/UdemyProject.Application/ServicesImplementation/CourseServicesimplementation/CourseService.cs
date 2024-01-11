@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using SimpleEcommerce.Infrastructure.RepositoryImplementation;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using UdemyProject.Contract.RepositoryContracts;
 using UdemyProject.Contracts.DTOs.Course;
 using UdemyProject.Contracts.DTOs.CourseDTOs;
@@ -125,6 +121,19 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return CourseLandingPageForReturnDTO;
         }
 
+        public async Task<CourseMessageForReturnDTo> GetCourseMessage(int Id)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id);
+
+            if (Course is null)
+            {
+                return null;
+            }
+
+            var CourseForReturn = _Mapper.Map<CourseMessageForReturnDTo>(Course);
+            return CourseForReturn;
+        }
+
         public async Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId)
         {
             var Courses = await _CourseRepository.GetAllAsNoTracking(c => c.InstructorId == InstructorId, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Instructor", "category", "languge" });
@@ -193,6 +202,21 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             Course.Description = courseLanding.Description;
             Course.langugeId = courseLanding.LangugeId;
             Course.CategoryId = courseLanding.CategoryId.Value;
+            _CourseRepository.Update(Course);
+            return await _CourseRepository.SaveChanges();
+        }
+
+        public async Task<bool> UpdateCourseMessage(CourseMessageForUpdateDTO courseMessageForUpdateDTO)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == courseMessageForUpdateDTO.CourseId && c.InstructorId == courseMessageForUpdateDTO.InstructorId);
+
+            if (Course is null)
+            {
+                return false;
+            }
+
+            _Mapper.Map(courseMessageForUpdateDTO, Course);
+
             _CourseRepository.Update(Course);
             return await _CourseRepository.SaveChanges();
         }

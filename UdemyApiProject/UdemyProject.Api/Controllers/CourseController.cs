@@ -32,6 +32,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpPost("UpdateCourseMessage")]
+        public async Task<IActionResult> UpdateCourseMessage(CourseMessageForUpdateDTO courseMessage)
+        {
+            var Response = await _Mediator.Send(new UpdateCourseMessagesModelCommand(courseMessage));
+            return NewResult(Response);
+        }
+
         [HttpPost("SaveCourseLanding")]
         public async Task<IActionResult> SaveCourseLanding([FromForm] CourseLandingDTO courseLandingDTO)
         {
@@ -50,6 +57,13 @@ namespace UdemyProject.Api.Controllers
         public async Task<IActionResult> GetCourseLandingPage(int Id)
         {
             var Response = await _Mediator.Send(new GetCourseLandingPageQuery(Id));
+            return NewResult(Response);
+        }
+
+        [HttpGet("CourseMessages")]
+        public async Task<IActionResult> GetCourseMessages(int Id)
+        {
+            var Response = await _Mediator.Send(new GetCourseMessageModelQuery(Id));
             return NewResult(Response);
         }
 

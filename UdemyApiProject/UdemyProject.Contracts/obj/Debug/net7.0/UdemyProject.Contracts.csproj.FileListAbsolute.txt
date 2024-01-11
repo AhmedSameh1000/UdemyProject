@@ -45,3 +45,10 @@ C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Con
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\refint\UdemyProject.Contracts.dll
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Contracts.pdb
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\ref\UdemyProject.Contracts.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\bin\Debug\net7.0\ar\UdemyProject.Contracts.resources.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\bin\Debug\net7.0\en\UdemyProject.Contracts.resources.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Application.Shared.Sharedresources.ar.resources
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Application.Shared.Sharedresources.en.resources
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\UdemyProject.Contracts.csproj.GenerateResource.cache
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\ar\UdemyProject.Contracts.resources.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Contracts\obj\Debug\net7.0\en\UdemyProject.Contracts.resources.dll

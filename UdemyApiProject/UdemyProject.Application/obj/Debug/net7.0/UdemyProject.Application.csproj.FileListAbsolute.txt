@@ -78,3 +78,5 @@ C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.App
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\refint\UdemyProject.Application.dll
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\UdemyProject.Application.pdb
 C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Application\obj\Debug\net7.0\ref\UdemyProject.Application.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Application\bin\Debug\net7.0\ar\UdemyProject.Contracts.resources.dll
+C:\Users\Ahmed Sameh\Desktop\Clone\UdemyProject\UdemyApiProject\UdemyProject.Application\bin\Debug\net7.0\en\UdemyProject.Contracts.resources.dll

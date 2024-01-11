@@ -18,5 +18,9 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<string> GetVideoPromotionCourse(int Id);
 
         Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId);
+
+        Task<bool> UpdateCourseMessage(CourseMessageForUpdateDTO courseMessageForUpdateDTO);
+
+        Task<CourseMessageForReturnDTo> GetCourseMessage(int Id);
     }
 }

@@ -235,6 +235,9 @@ namespace UdemyProject.Infrastructure.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CongratulationsMessage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CourseLanguge")
                         .HasColumnType("nvarchar(max)");
 
@@ -256,6 +259,9 @@ namespace UdemyProject.Infrastructure.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WelcomeMessage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isPublished")

@@ -25,3 +25,6 @@ body {
 i {
   cursor: pointer;
 }
+.clamp {
+  font-size: clamp(1rem, 10vw, 1rem);
+}

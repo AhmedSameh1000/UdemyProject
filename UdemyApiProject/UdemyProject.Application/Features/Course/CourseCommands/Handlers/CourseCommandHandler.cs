@@ -20,7 +20,8 @@ namespace UdemyProject.Application.Features.Course.CourseCommands.Handlers
     public class CourseCommandHandler : ResponseHandlerModel,
         IRequestHandler<CreateBasicCourseModelCommand, ResponseModel<int>>,
         IRequestHandler<CreateCourseRequirmentModelCommand, ResponseModel<bool>>,
-        IRequestHandler<SaveCourseLandingModelCommand, ResponseModel<bool>>
+        IRequestHandler<SaveCourseLandingModelCommand, ResponseModel<bool>>,
+        IRequestHandler<UpdateCourseMessagesModelCommand, ResponseModel<bool>>
     {
         private readonly ICourseService _CourseService;
         private readonly IValidator<CourseBasicDataDTO> _BasicCoursevalidation;
@@ -75,6 +76,18 @@ namespace UdemyProject.Application.Features.Course.CourseCommands.Handlers
             }
 
             return Success(Response);
+        }
+
+        public async Task<ResponseModel<bool>> Handle(UpdateCourseMessagesModelCommand request, CancellationToken cancellationToken)
+        {
+            var IsUpdated = await _CourseService.UpdateCourseMessage(request.CourseMessage);
+
+            if (!IsUpdated)
+            {
+                return BadRequest<bool>("ERR,ERR");
+            }
+
+            return Success(IsUpdated);
         }
     }
 }

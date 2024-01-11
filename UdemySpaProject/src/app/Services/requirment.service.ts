@@ -21,11 +21,14 @@ export class RequirmentService implements GeneralCourse {
     this.CourseService.CreateCourseRequirments(prerequisiteDTO).subscribe({
       next: (res) => {
         this.Toastr.success('Your changes have been successfully saved.');
+
+        console.log(res);
       },
       error: (err) => {
         this.Toastr.warning(
           'your changes have not been saved please address the issues'
         );
+        console.log(err);
       },
     });
   }

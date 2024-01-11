@@ -36,6 +36,7 @@ export class CourserequirmentComponent implements OnInit, OnDestroy {
         console.log(this.PrerequisiteForm);
         var data = new MyData();
         data.Data = this.PrerequisiteForm.value;
+        data.isDirty = this.PrerequisiteForm.dirty;
         data.CourseId = this.CourseId;
         data.numberObComponent = ComponentNumbers.RequirmentComponentnumber;
         this.CourseService.SetFiredData(data);

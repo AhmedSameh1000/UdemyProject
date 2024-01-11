@@ -36,6 +36,12 @@ export class CourseService {
       BasicCourse
     );
   }
+  UpdateCourseMessages(CourseMessages: any) {
+    return this.HttpClient.post(
+      'http://localhost:5227/api/Course/UpdateCourseMessage',
+      CourseMessages
+    );
+  }
 
   GetInstructorCourses(userId: any) {
     return this.HttpClient.get(
@@ -59,6 +65,12 @@ export class CourseService {
   GetCourseDetails(Id: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/GetCourseDetails?Id=${Id}`
+    );
+  }
+
+  GetCourseMessages(Id: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/CourseMessages?Id=${Id}`
     );
   }
   GetCourseLandingPage(Id: any) {
@@ -87,6 +99,7 @@ export class CourseService {
 
 export class MyData {
   Data: any;
+  isDirty = false;
   CourseId: number;
   numberObComponent: number;
   constructor() {}

@@ -14,6 +14,14 @@
         },
         "runtime": {
           "UdemyProject.Contracts.dll": {}
+        },
+        "resources": {
+          "ar/UdemyProject.Contracts.resources.dll": {
+            "locale": "ar"
+          },
+          "en/UdemyProject.Contracts.resources.dll": {
+            "locale": "en"
+          }
         }
       },
       "JetBrains.Annotations/2022.3.1": {
