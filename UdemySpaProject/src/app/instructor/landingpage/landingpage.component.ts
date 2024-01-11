@@ -145,7 +145,6 @@ export class LandingpageComponent implements OnInit, OnDestroy {
 
       return;
     }
-    console.log(extension)[1];
     img.parentElement.style.padding = '0';
 
     console.log();

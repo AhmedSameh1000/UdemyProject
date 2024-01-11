@@ -16,5 +16,7 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<CourseLandingPageForReturnDTO> GetCourseLandingPage(int Id);
 
         Task<string> GetVideoPromotionCourse(int Id);
+
+        Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId);
     }
 }

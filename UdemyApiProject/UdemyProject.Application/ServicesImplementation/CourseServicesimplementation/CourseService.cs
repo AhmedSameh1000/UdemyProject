@@ -125,6 +125,22 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return CourseLandingPageForReturnDTO;
         }
 
+        public async Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId)
+        {
+            var Courses = await _CourseRepository.GetAllAsNoTracking(c => c.InstructorId == InstructorId, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Instructor", "category", "languge" });
+
+            var CourseToReturn = Courses.Select(c => new InstructorMinimalCourses()
+            {
+                Id = c.Id,
+                Name = c.Title,
+                SubTitle = c.SubTitle,
+                Image = c.Image == null ? null : Path.Combine(@$"{_HttpContextAccessor.HttpContext.Request.Scheme}://{_HttpContextAccessor.HttpContext.Request.Host}", "CourseImages", c.Image),
+                Progress = (int)(100 * (c.CountofNotNullValues() / 19))
+            }).ToList();
+
+            return CourseToReturn;
+        }
+
         public async Task<string> GetVideoPromotionCourse(int Id)
         {
             var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id);

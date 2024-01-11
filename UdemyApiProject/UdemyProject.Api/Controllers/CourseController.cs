@@ -53,6 +53,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpGet("InstructorCourss")]
+        public async Task<IActionResult> GetInstructorCourss(string InstructorId)
+        {
+            var Response = await _Mediator.Send(new GetCoursesForInstructorModelQuery(InstructorId));
+            return NewResult(Response);
+        }
+
         [HttpGet("StreamVideoPromotion")]
         public async Task<IActionResult> StreamVideoPromotion(int Id)
         {

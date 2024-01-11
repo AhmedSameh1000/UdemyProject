@@ -27,5 +27,31 @@
 
         public string InstructorId { get; set; }
         public ApplicationUser Instructor { get; set; }
+
+        public double CountofNotNullValues()
+        {
+            double notNullCount = 0;
+
+            foreach (var property in GetType().GetProperties())
+            {
+                var value = property.GetValue(this);
+
+                // Check if the property is a reference type and its value is not null
+                if (property.PropertyType.IsClass && value != null)
+                {
+                    notNullCount++;
+                }
+
+                // If the property is a nullable value type, check if its value is not null
+                if (property.PropertyType.IsGenericType &&
+                    property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
+                    value != null)
+                {
+                    notNullCount++;
+                }
+            }
+
+            return notNullCount;
+        }
     }
 }

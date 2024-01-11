@@ -31,7 +31,7 @@ export class RegisterComponent {
     this.AuthService.Signup(this.RegisterForm.value).subscribe({
       next: (res: any) => {
         this.AuthService.SaveTokens(res);
-        this.Router.navigate(['auth/register']);
+        this.Router.navigate(['auth/login']);
       },
       error: (err) => {
         this.Email_is_already_registered = err.error.errors[0];

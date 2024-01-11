@@ -16,7 +16,8 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
     public class CourseHandlerQuery : ResponseHandlerModel,
         IRequestHandler<GetCourseDetailsModelQuery, ResponseModel<CourseForReturnDto>>,
         IRequestHandler<GetCourseLandingPageQuery, ResponseModel<CourseLandingPageForReturnDTO>>,
-        IRequestHandler<GetCourseVideoPromotionpathQuery, string>
+        IRequestHandler<GetCourseVideoPromotionpathQuery, string>,
+        IRequestHandler<GetCoursesForInstructorModelQuery, ResponseModel<List<InstructorMinimalCourses>>>
     {
         private readonly ICourseService _CourseService;
 
@@ -57,6 +58,13 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             }
 
             return VideoPath;
+        }
+
+        public async Task<ResponseModel<List<InstructorMinimalCourses>>> Handle(GetCoursesForInstructorModelQuery request, CancellationToken cancellationToken)
+        {
+            var Response = await _CourseService.GetInstructorCourse(request.Id);
+
+            return Success(Response);
         }
     }
 }
