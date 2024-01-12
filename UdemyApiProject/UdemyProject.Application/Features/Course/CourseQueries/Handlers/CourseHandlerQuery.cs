@@ -14,7 +14,8 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
         IRequestHandler<GetCourseLandingPageQuery, ResponseModel<CourseLandingPageForReturnDTO>>,
         IRequestHandler<GetCourseVideoPromotionpathQuery, string>,
         IRequestHandler<GetCoursesForInstructorModelQuery, ResponseModel<List<InstructorMinimalCourses>>>,
-        IRequestHandler<GetCourseMessageModelQuery, ResponseModel<CourseMessageForReturnDTo>>
+        IRequestHandler<GetCourseMessageModelQuery, ResponseModel<CourseMessageForReturnDTo>>,
+        IRequestHandler<GetCoursePriceModelQuery, ResponseModel<CoursePriceForReturnDTO>>
     {
         private readonly ICourseService _CourseService;
 
@@ -28,7 +29,7 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
             var CourseDetails = await _CourseService.GetCourse(request.CourseId);
             if (CourseDetails == null)
             {
-                return BadRequest<CourseForReturnDto>("ERR,ERR");
+                return NotFound<CourseForReturnDto>();
             }
 
             return Success(CourseDetails);
@@ -68,9 +69,21 @@ namespace UdemyProject.Application.Features.Course.CourseQueries.Handlers
         {
             var CourseForeturn = await _CourseService.GetCourseMessage(request.Id);
             if (CourseForeturn is null)
-                return BadRequest<CourseMessageForReturnDTo>("ERR,ERR");
+                return NotFound<CourseMessageForReturnDTo>();
 
             return Success(CourseForeturn);
+        }
+
+        public async Task<ResponseModel<CoursePriceForReturnDTO>> Handle(GetCoursePriceModelQuery request, CancellationToken cancellationToken)
+        {
+            var Course = await _CourseService.GetCoursePrice(request.CourseId);
+
+            if (Course is null)
+            {
+                return NotFound<CoursePriceForReturnDTO>();
+            }
+
+            return Success(Course);
         }
     }
 }

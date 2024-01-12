@@ -54,6 +54,12 @@ export class CourseService {
       CourseLandingPage
     );
   }
+  UpdateCoursePrice(CourseForUpdate: any) {
+    return this.HttpClient.post(
+      'http://localhost:5227/api/Course/UpdateCoursePrice',
+      CourseForUpdate
+    );
+  }
 
   CreateCourseRequirments(Requirments: any) {
     return this.HttpClient.post(
@@ -76,6 +82,12 @@ export class CourseService {
   GetCourseLandingPage(Id: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/CourseLandingPage?Id=${Id}`
+    );
+  }
+
+  GetCoursPrice(Id: any) {
+    return this.HttpClient.get(
+      `http://localhost:5227/api/Course/GetCoursePrice?CourseId=${Id}`
     );
   }
 

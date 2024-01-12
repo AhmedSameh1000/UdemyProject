@@ -16,6 +16,8 @@ namespace UdemyProject.Application.Mapping
             MapFromGenralModelCourseDetailsDTo_Requirment_Who_What();
             MapFromCourseMessageForUpdateDTO_Course();
             MapFromCourseMessageForReturnDTO_Course();
+            MapFromCoursePriceForUpdate_Course();
+            MapFromCoursePriceForReturn_Course();
         }
 
         public void MapFromCourseBasicData_Course()
@@ -67,6 +69,23 @@ namespace UdemyProject.Application.Mapping
         public void MapFromCourseMessageForReturnDTO_Course()
         {
             CreateMap<CourseMessageForReturnDTo, Course>().ReverseMap();
+        }
+
+        public void MapFromCoursePriceForUpdate_Course()
+        {
+            CreateMap<CoursePriceForUpdate, Course>()
+                .ForMember(c => c.Id, opt => opt.Ignore())
+                .ForMember(c => c.InstructorId, opt => opt.Ignore())
+                .ReverseMap();
+        }
+
+        public void MapFromCoursePriceForReturn_Course()
+        {
+            CreateMap<Course, CoursePriceForReturnDTO>()
+
+                .ForMember(c => c.CourseId, opt => opt.MapFrom(c => c.Id))
+                .ForMember(c => c.Price, opt => opt.MapFrom(c => c.Price))
+                .ReverseMap();
         }
 
         public void MapFromGenralModelCourseDetailsDTo_Requirment_Who_What()

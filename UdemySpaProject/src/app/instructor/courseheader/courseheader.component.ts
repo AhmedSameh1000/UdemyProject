@@ -1,3 +1,4 @@
+import { PriceService } from './../../Services/price.service';
 import { CourseService, MyData } from './../../Services/course.service';
 import { Component, OnInit } from '@angular/core';
 import { RequirmentService } from 'src/app/Services/requirment.service';
@@ -16,7 +17,8 @@ export class CourseheaderComponent implements OnInit {
     private courseService: CourseService,
     private requirmentService: RequirmentService,
     private messageService: MessageService,
-    private landingservice: LandingpageService
+    private landingservice: LandingpageService,
+    private PriceService: PriceService
   ) {}
 
   CourseId: any;
@@ -28,6 +30,7 @@ export class CourseheaderComponent implements OnInit {
           data.isDirty ||
           data.numberObComponent == ComponentNumbers.RequirmentComponentnumber
         ) {
+          console.log(data.isDirty);
           this.SaveCourse(data.numberObComponent, data);
         }
       },
@@ -50,6 +53,8 @@ export class CourseheaderComponent implements OnInit {
         return this.messageService;
       case ComponentNumbers.landingpageComponentnumber:
         return this.landingservice;
+      case ComponentNumbers.pricingComponentnumber:
+        return this.PriceService;
     }
   }
 

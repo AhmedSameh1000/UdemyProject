@@ -134,6 +134,18 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return CourseForReturn;
         }
 
+        public async Task<CoursePriceForReturnDTO> GetCoursePrice(int Id)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == Id);
+
+            if (Course is null)
+                return null;
+
+            var CoursePriceForReturn = _Mapper.Map<CoursePriceForReturnDTO>(Course);
+
+            return CoursePriceForReturn;
+        }
+
         public async Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId)
         {
             var Courses = await _CourseRepository.GetAllAsNoTracking(c => c.InstructorId == InstructorId, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Instructor", "category", "languge" });
@@ -216,6 +228,20 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             }
 
             _Mapper.Map(courseMessageForUpdateDTO, Course);
+
+            _CourseRepository.Update(Course);
+            return await _CourseRepository.SaveChanges();
+        }
+
+        public async Task<bool> UpdateCourseprice(CoursePriceForUpdate coursePriceForUpdate)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == coursePriceForUpdate.CourseId && c.InstructorId == coursePriceForUpdate.InstructorId);
+
+            if (Course is null)
+            {
+                return false;
+            }
+            _Mapper.Map(coursePriceForUpdate, Course);
 
             _CourseRepository.Update(Course);
             return await _CourseRepository.SaveChanges();

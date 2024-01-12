@@ -53,15 +53,25 @@ namespace UdemyProject.Application.ResponseHandler
             };
         }
 
-        public ResponseModel<T> BadRequest<T>(string Message = null)
+        public ResponseModel<T> BadRequest<T>(string Message)
         {
             return new ResponseModel<T>()
             {
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
-                Errors =  Message.Split(',').ToList(),
+                Errors = Message.Split(',').ToList(),
                 Message = Message ?? "BadRequest",
                 //Message = _stringLocalizer[SharedSesourcesKeys.BadRequest],
+            };
+        }
+
+        public ResponseModel<T> BadRequest<T>()
+        {
+            return new ResponseModel<T>()
+            {
+                StatusCode = System.Net.HttpStatusCode.BadRequest,
+                Succeeded = false,
+                Message = "Bad Request",
             };
         }
 

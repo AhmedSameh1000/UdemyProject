@@ -22,5 +22,9 @@ namespace UdemyProject.Contracts.ServicesContracts
         Task<bool> UpdateCourseMessage(CourseMessageForUpdateDTO courseMessageForUpdateDTO);
 
         Task<CourseMessageForReturnDTo> GetCourseMessage(int Id);
+
+        Task<bool> UpdateCourseprice(CoursePriceForUpdate coursePriceForUpdate);
+
+        Task<CoursePriceForReturnDTO> GetCoursePrice(int Id);
     }
 }

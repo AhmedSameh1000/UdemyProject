@@ -254,6 +254,9 @@ namespace UdemyProject.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");
 

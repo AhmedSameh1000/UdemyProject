@@ -46,6 +46,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpPost("UpdateCoursePrice")]
+        public async Task<IActionResult> SaveCourseLanding(CoursePriceForUpdate coursePriceForUpdate)
+        {
+            var Response = await _Mediator.Send(new UpdateCoursePriceModelCommand(coursePriceForUpdate));
+            return NewResult(Response);
+        }
+
         [HttpGet("GetCourseDetails")]
         public async Task<IActionResult> GetCourseDetails(int Id)
         {
@@ -80,6 +87,14 @@ namespace UdemyProject.Api.Controllers
             var Response = await _Mediator.Send(new GetCourseVideoPromotionpathQuery(Id));
 
             return new FileStreamResult(new FileStream(Response, FileMode.Open), "video/mp4");
+        }
+
+        [HttpGet("GetCoursePrice")]
+        public async Task<IActionResult> GetCoursePrice(int CourseId)
+        {
+            var Response = await _Mediator.Send(new GetCoursePriceModelQuery(CourseId));
+
+            return NewResult(Response);
         }
     }
 }
