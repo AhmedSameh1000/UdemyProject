@@ -146,6 +146,39 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             return CoursePriceForReturn;
         }
 
+        public async Task<bool> DeleteCourse(int CourseId, string InstructorId)
+        {
+            var Course = await _CourseRepository.GetFirstOrDefault(c => c.Id == CourseId && c.InstructorId == InstructorId);
+
+            if (Course is null)
+                return false;
+
+            _CourseRepository.Remove(Course);
+            var isDeleted = await _CourseRepository.SaveChanges();
+
+            if (isDeleted && Course.Image != null)
+            {
+                DeleteFileInWWWRoot("CourseImages", Course.Image);
+            }
+
+            if (isDeleted && Course.CoursePromotionalVideo != null)
+            {
+                DeleteFileInWWWRoot("PromotionalVideo", Course.CoursePromotionalVideo);
+            }
+
+            return isDeleted;
+        }
+
+        private void DeleteFileInWWWRoot(string Folderpath, string fileNamewithExtension)
+        {
+            var path = Path.Combine(_Host.WebRootPath, Folderpath, Path.GetFileName(fileNamewithExtension));
+            var IsExist = Path.Exists(path);
+            if (IsExist)
+            {
+                File.Delete(path);
+            }
+        }
+
         public async Task<List<InstructorMinimalCourses>> GetInstructorCourse(string InstructorId)
         {
             var Courses = await _CourseRepository.GetAllAsNoTracking(c => c.InstructorId == InstructorId, new[] { "Requirments", "whoIsthisCoursefors", "whatYouLearnFromCourse", "Instructor", "category", "languge" });
@@ -184,12 +217,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 if (Course.Image != null)
                 {
-                    var path = Path.Combine(_Host.WebRootPath, "CourseImages", Path.GetFileName(Course.Image));
-                    var IsExist = Path.Exists(path);
-                    if (IsExist)
-                    {
-                        File.Delete(path);
-                    }
+                    DeleteFileInWWWRoot("CourseImages", Course.Image);
                 }
                 Course.Image = SaveFile(courseLanding.Image, Path.Combine(_Host.WebRootPath, "CourseImages"));
             }
@@ -198,12 +226,7 @@ namespace UdemyProject.Application.ServicesImplementation.CourseServicesimplemen
             {
                 if (Course.CoursePromotionalVideo != null)
                 {
-                    var path = Path.Combine(_Host.WebRootPath, "PromotionalVideo", Path.GetFileName(Course.CoursePromotionalVideo));
-                    var IsExist = Path.Exists(path);
-                    if (IsExist)
-                    {
-                        File.Delete(path);
-                    }
+                    DeleteFileInWWWRoot("PromotionalVideo", Course.CoursePromotionalVideo);
                 }
                 Course.CoursePromotionalVideo = SaveFile(courseLanding.PromotionVideo, Path.Combine(_Host.WebRootPath, "PromotionalVideo"));
             }

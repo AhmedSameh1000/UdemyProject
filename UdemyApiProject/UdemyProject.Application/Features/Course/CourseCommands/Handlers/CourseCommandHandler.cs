@@ -15,7 +15,8 @@ namespace UdemyProject.Application.Features.Course.CourseCommands.Handlers
         IRequestHandler<CreateCourseRequirmentModelCommand, ResponseModel<bool>>,
         IRequestHandler<SaveCourseLandingModelCommand, ResponseModel<bool>>,
         IRequestHandler<UpdateCourseMessagesModelCommand, ResponseModel<bool>>,
-        IRequestHandler<UpdateCoursePriceModelCommand, ResponseModel<bool>>
+        IRequestHandler<UpdateCoursePriceModelCommand, ResponseModel<bool>>,
+        IRequestHandler<DeleteCourseModelCommand, ResponseModel<bool>>
     {
         private readonly ICourseService _CourseService;
         private readonly IValidator<CourseBasicDataDTO> _BasicCoursevalidation;
@@ -93,6 +94,17 @@ namespace UdemyProject.Application.Features.Course.CourseCommands.Handlers
                 return BadRequest<bool>();
             }
             return Success(CourseUpdated);
+        }
+
+        public async Task<ResponseModel<bool>> Handle(DeleteCourseModelCommand request, CancellationToken cancellationToken)
+        {
+            var IsDeleted = await _CourseService.DeleteCourse(request.CourseId, request.InstructorId);
+
+            if (!IsDeleted)
+            {
+                return BadRequest<bool>();
+            }
+            return Success(IsDeleted);
         }
     }
 }

@@ -39,6 +39,13 @@ namespace UdemyProject.Api.Controllers
             return NewResult(Response);
         }
 
+        [HttpDelete("DeleteCourse")]
+        public async Task<IActionResult> DeleteCourse(int CourseId, string InstructorId)
+        {
+            var Response = await _Mediator.Send(new DeleteCourseModelCommand(CourseId, InstructorId));
+            return NewResult(Response);
+        }
+
         [HttpPost("SaveCourseLanding")]
         public async Task<IActionResult> SaveCourseLanding([FromForm] CourseLandingDTO courseLandingDTO)
         {

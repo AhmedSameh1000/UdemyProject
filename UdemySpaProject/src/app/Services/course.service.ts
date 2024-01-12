@@ -85,6 +85,12 @@ export class CourseService {
     );
   }
 
+  DeleteCourse(CourseId: any, InstructorId: any) {
+    return this.HttpClient.delete(
+      `http://localhost:5227/api/Course/DeleteCourse?CourseId=${CourseId}&InstructorId=${InstructorId}`
+    );
+  }
+
   GetCoursPrice(Id: any) {
     return this.HttpClient.get(
       `http://localhost:5227/api/Course/GetCoursePrice?CourseId=${Id}`
