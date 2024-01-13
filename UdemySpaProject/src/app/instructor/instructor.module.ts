@@ -17,7 +17,18 @@ import { PricingComponent } from './pricing/pricing.component';
 import { CourseMessageComponent } from './course-message/course-message.component';
 
 @NgModule({
-  declarations: [LandingComponent, BasicDataComponent, CoursecreationComponent, CourseplaningComponent, CourseheaderComponent, CourserequirmentComponent, CurriculmComponent, LandingpageComponent, PricingComponent, CourseMessageComponent],
+  declarations: [
+    LandingComponent,
+    BasicDataComponent,
+    CoursecreationComponent,
+    CourseplaningComponent,
+    CourseheaderComponent,
+    CourserequirmentComponent,
+    CurriculmComponent,
+    LandingpageComponent,
+    PricingComponent,
+    CourseMessageComponent,
+  ],
   imports: [
     CommonModule,
     InstructorRoutingModule,

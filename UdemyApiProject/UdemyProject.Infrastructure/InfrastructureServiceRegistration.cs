@@ -27,6 +27,8 @@ namespace UdemyProject.Infrastructure
             services.AddScoped<IWhatYouLearnFromCourseRepository, WhatYouLearnFromCourseRepository>();
             services.AddScoped<IWhoIsThisCourseForRepository, WhoIsThisCourseForRepository>();
             services.AddScoped<ICourseLangugeRepository, CourseLangugeRepository>();
+            services.AddScoped<ICourseSectionRepository, CourseSectionRepository>();
+            services.AddScoped<ICourseLectureRepository, CourseLectureRepository>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

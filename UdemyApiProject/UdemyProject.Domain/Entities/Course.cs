@@ -24,6 +24,7 @@
         public List<WhatYouLearnFromCourse> whatYouLearnFromCourse { get; set; }
 
         public List<ApplicationUser> Students { get; set; }
+        public List<Section> Sections { get; set; }
 
         public string InstructorId { get; set; }
         public ApplicationUser Instructor { get; set; }
