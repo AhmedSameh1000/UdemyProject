@@ -9,6 +9,7 @@ import { ComponentNumbers } from 'src/app/Models/component-numbers';
 import { GeneralCourse } from 'src/app/Services/general-course';
 import { LandingpageService } from 'src/app/Services/landingpage.service';
 import Swal from 'sweetalert2';
+import { CurriculmService } from 'src/app/Services/curriculm.service';
 
 @Component({
   selector: 'app-courseheader',
@@ -22,21 +23,19 @@ export class CourseheaderComponent implements OnInit {
     private messageService: MessageService,
     private landingservice: LandingpageService,
     private PriceService: PriceService,
+    private CurriculmService: CurriculmService,
     private AuthService: AuthService,
     private Router: Router,
     private ActivatedRoute: ActivatedRoute
   ) {}
 
-  CourseId: any;
-  GetCoursId() {
-    this.ActivatedRoute.paramMap.subscribe({
-      next: (data: any) => {
-        this.CourseId = +data.get('Id');
-        console.log(this.CourseId);
+  IsCurriculmComponent: boolean;
+  ngOnInit(): void {
+    this.CurriculmService.GetCurriculmComponent().subscribe({
+      next: (IsCurriculmComponent) => {
+        this.IsCurriculmComponent = IsCurriculmComponent;
       },
     });
-  }
-  ngOnInit(): void {
     this.GetCoursId();
     this.courseService.GetFiredData().subscribe({
       next: (data) => {
@@ -47,6 +46,16 @@ export class CourseheaderComponent implements OnInit {
           console.log(data.isDirty);
           this.SaveCourse(data.numberObComponent, data);
         }
+      },
+    });
+  }
+
+  CourseId: any;
+  GetCoursId() {
+    this.ActivatedRoute.paramMap.subscribe({
+      next: (data: any) => {
+        this.CourseId = +data.get('Id');
+        console.log(this.CourseId);
       },
     });
   }

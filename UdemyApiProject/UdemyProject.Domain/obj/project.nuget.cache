@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "acUQPWCAuIQgCPa5yebiiX4hi8eWoDSMdBqMoQpETg85IKvp4rQ7/3lKmvsi4xg1FE8ZI6QirL7LAerauDQ75Q==",
+  "dgSpecHash": "4UiO+lpnNyEfRygNYRH7jd2ViiACw7K1m0ipnmQCaZ0oHcinYWtUJMcrMVWyKRogKt+iElCXGL+oSUnvgPrrhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Domain\\UdemyProject.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.14\\microsoft.aspnetcore.cryptography.internal.7.0.14.nupkg.sha512",
     "C:\\Users\\Ahmed Sameh\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.14\\microsoft.aspnetcore.cryptography.keyderivation.7.0.14.nupkg.sha512",

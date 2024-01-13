@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4y7e3U7/7Yo2QAeabeSb+PhyL4h30Fgfs7eWb2hOOsE=",
+  "Hash": "luQzS2OZK/3YYTcnV+EY+7hOnXocRbzKw3Yte7zkZOk=",
   "Source": "UdemyProject.Api",
   "BasePath": "_content/UdemyProject.Api",
   "Mode": "Default",
@@ -10,36 +10,17 @@
     {
       "Name": "UdemyProject.Api\\wwwroot",
       "Source": "UdemyProject.Api",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\62a6086c-32de-4b45-bacb-0289bc8aa62c.jpg",
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
-      "BasePath": "_content/UdemyProject.Api",
-      "RelativePath": "CourseImages/62a6086c-32de-4b45-bacb-0289bc8aa62c.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\CourseImages\\62a6086c-32de-4b45-bacb-0289bc8aa62c.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png",
-      "SourceId": "UdemyProject.Api",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
       "RelativePath": "CourseImages/90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png",
       "AssetKind": "All",
@@ -55,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png"
     },
     {
-      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4",
+      "Identity": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4",
       "SourceId": "UdemyProject.Api",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\",
       "BasePath": "_content/UdemyProject.Api",
       "RelativePath": "PromotionalVideo/0fcc20e4-c174-4649-8166-79976df532be.mp4",
       "AssetKind": "All",

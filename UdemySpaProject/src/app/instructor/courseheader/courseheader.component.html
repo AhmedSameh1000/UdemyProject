@@ -6,9 +6,14 @@
     content uploaded
   </div>
   <div class="d-flex gap-3 me-2 align-items-center">
-    <button class="btn btn-secondary" (click)="FireActionSaveClick()">
+    <button
+      *ngIf="!IsCurriculmComponent"
+      class="btn btn-secondary"
+      (click)="FireActionSaveClick()"
+    >
       Save
     </button>
-    <i class="fa-solid fa-trash h3 mt-2" (click)="DeleteCourse()"></i>
+
+    <i class="fa-solid fa-trash-can h3 mt-2" (click)="DeleteCourse()"></i>
   </div>
 </div>

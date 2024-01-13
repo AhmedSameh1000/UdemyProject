@@ -1,15 +1,11 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\62a6086c-32de-4b45-bacb-0289bc8aa62c.jpg",
-      "PackagePath": "staticwebassets\\CourseImages\\62a6086c-32de-4b45-bacb-0289bc8aa62c.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png",
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png",
       "PackagePath": "staticwebassets\\CourseImages\\90e5f1aa-3a0f-4b44-a867-bf52cbe93d49.png"
     },
     {
-      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\Clone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4",
+      "Id": "C:\\Users\\Ahmed Sameh\\Desktop\\LastClone\\UdemyProject\\UdemyApiProject\\UdemyProject.Api\\wwwroot\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4",
       "PackagePath": "staticwebassets\\PromotionalVideo\\0fcc20e4-c174-4649-8166-79976df532be.mp4"
     },
     {
